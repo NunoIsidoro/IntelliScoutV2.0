@@ -1,0 +1,2 @@
+rootProject.name = "IntelliScout"
+include ':app'
