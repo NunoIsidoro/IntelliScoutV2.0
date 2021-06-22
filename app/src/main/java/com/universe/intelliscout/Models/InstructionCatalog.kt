@@ -1,4 +1,4 @@
-package ipca.example.projetosemestre.Models
+package com.universe.intelliscout.Models
 
 import org.json.JSONObject
 

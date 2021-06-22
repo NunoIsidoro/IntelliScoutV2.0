@@ -1,7 +1,6 @@
-package ipca.example.projetosemestre.Models
+package com.universe.intelliscout.Models
 
 import org.json.JSONObject
-import java.net.IDN
 
 class ActivityLocal {
 
