@@ -13,8 +13,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.IntelliScout">
 
+        <activity android:name=".Profile.ProfileGetAllActivity"></activity>
         <activity android:name=".Profile.ProfileActivity"></activity>
         <activity android:name=".Profile.EditProfileActivity" />
         <activity android:name=".MainActivity" />
