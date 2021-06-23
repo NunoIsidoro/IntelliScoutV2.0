@@ -1,4 +1,4 @@
-package com.universe.intelliscout.InstructionCatalog
+/*package com.universe.intelliscout.InstructionCatalog
 
 import android.content.Context
 import android.util.Log
@@ -112,4 +112,4 @@ object InstructionCatalogRequest {
 
     }
 
-}
+}*/

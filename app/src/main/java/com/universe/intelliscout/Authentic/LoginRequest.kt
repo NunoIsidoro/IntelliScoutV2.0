@@ -48,6 +48,34 @@ object LoginRequest {
 
     fun registerRequest (register: Login) : Boolean{
 
+        println(register.toJson().toString())
+
+        val requestBody = RequestBody.create(
+            "application/json".toMediaTypeOrNull(),
+            register.toJson().toString()
+        )
+
+        val request = Request.Builder()
+            .url(BASE_API + REGISTER)
+            .post(requestBody)
+            .build()
+
+        OkHttpClient().newCall(request).execute().use {response ->
+
+            println(response)
+
+            if(response.message == "OK")
+                return true
+
+        }
+
+        return false
+
+    }
+    
+
+    fun registerRequest (register: Login) : Boolean{
+
         val requestBody = RequestBody.create(
             "application/json".toMediaTypeOrNull(),
             register.toJson().toString()
@@ -68,6 +96,7 @@ object LoginRequest {
         return false
 
     }
+    
 
     fun getLoginByGmail (gmail: String) : Login{
 
@@ -92,7 +121,35 @@ object LoginRequest {
             return login!!
         }
     }
+    
 
+
+    fun getLoginById (id: Int) : Login{
+
+        var login: Login? = null
+
+        val request = Request.Builder()
+                .url(BASE_API + "/$id")
+                .get()
+                .build()
+
+        OkHttpClient().newCall(request).execute().use {response ->
+
+            val jsonArrayStr : String = response.body!!.string()
+            val jsonArray = JSONArray(jsonArrayStr)
+
+            for (index in 0 until jsonArray.length()) {
+                val jsonArticle = jsonArray.get(index) as JSONObject
+                println(jsonArticle)
+                login = Login.fromJson(jsonArticle)
+            }
+
+            return login!!
+        }
+    }
+    
+
+    
     fun getAllLogin (callBack: (List<Login>)->Unit) {
 
         val loginList : MutableList<Login> = arrayListOf()

@@ -1,4 +1,4 @@
-package com.universe.intelliscout.Equipment
+/*package com.universe.intelliscout.Equipment
 
 import android.content.Context
 import android.util.Log
@@ -111,4 +111,4 @@ object EquipmentRequest {
         OkHttpClient().newCall(request).execute().use { }
 
     }
-}
+
