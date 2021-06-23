@@ -1,22 +1,11 @@
-/*package com.universe.intelliscout.Equipment
+package com.universe.intelliscout.Equipment
 
-import android.content.Context
-import android.util.Log
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.universe.intelliscout.Models.Activity
-import com.universe.intelliscout.Models.Login
-import com.universe.intelliscout.Models.Instruction
+
 import com.universe.intelliscout.Models.Equipment
-import ipca.example.projetosemestre.Models.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
-import org.jetbrains.anko.doAsync
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -104,11 +93,11 @@ object EquipmentRequest {
     fun removeEquipment(idEquipment: Int) {
 
         val request = Request.Builder()
-            .url(url +"$idEquipment")
+            .url(url + "$idEquipment")
             .delete()
             .build()
 
         OkHttpClient().newCall(request).execute().use { }
 
     }
-
+}

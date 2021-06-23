@@ -46,33 +46,6 @@ object LoginRequest {
 
     }
 
-    fun registerRequest (register: Login) : Boolean{
-
-        println(register.toJson().toString())
-
-        val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            register.toJson().toString()
-        )
-
-        val request = Request.Builder()
-            .url(BASE_API + REGISTER)
-            .post(requestBody)
-            .build()
-
-        OkHttpClient().newCall(request).execute().use {response ->
-
-            println(response)
-
-            if(response.message == "OK")
-                return true
-
-        }
-
-        return false
-
-    }
-    
 
     fun registerRequest (register: Login) : Boolean{
 
