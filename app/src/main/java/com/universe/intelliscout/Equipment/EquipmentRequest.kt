@@ -1,4 +1,4 @@
-package com.universe.intelliscout.Equipment
+/*package com.universe.intelliscout.Equipment
 
 import android.content.Context
 import android.util.Log
@@ -578,4 +578,4 @@ class EquipmentRequest {
 
     }
 
-}
+}*/

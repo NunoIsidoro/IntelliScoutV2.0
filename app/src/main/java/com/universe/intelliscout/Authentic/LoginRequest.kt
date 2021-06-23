@@ -2,338 +2,156 @@ package com.universe.intelliscout.Authentic
 
 import android.content.Context
 import android.util.Log
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.universe.intelliscout.Models.Equipment
-import com.universe.intelliscout.Models.Instruction
 import com.universe.intelliscout.Models.Login
 import ipca.example.projetosemestre.Models.*
-import org.jetbrains.anko.doAsync
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 import org.json.JSONArray
+import org.json.JSONObject
 import java.lang.reflect.Method
+import java.nio.file.Files.delete
 
-class LoginRequest {
+object LoginRequest {
 
-    private var queue: RequestQueue? = null
+    const val BASE_API = "http://intelliscout.ml:60000/authentic"
+    const val LOGIN = "/login"
+    const val REGISTER = "/register"
 
-    //Function responsible for the account register: POST
-    fun register(context: Context, user: Login, registerEvent: ((Boolean) -> Unit)) {
+    fun loginRequest (login: Login) : Boolean {
 
-        doAsync {
-            queue = Volley.newRequestQueue(context)
+        val requestBody = RequestBody.create(
+            "application/json".toMediaTypeOrNull(),
+            login.toJson().toString()
+        )
 
-            val jsonObjectRequest = object : JsonObjectRequest(
-                Method.POST,
-                BASE_API + AUTHENTIC + REGISTER,
-                user.toJson(),
-                Response.Listener {
-                    Log.d("Requests", it.toString())
+        println(login.toJson().toString())
 
-                    Log.d("auth", it.toString())
+        val request = Request.Builder()
+            .url(BASE_API + LOGIN)
+            .post(requestBody)
+            .build()
 
+        OkHttpClient().newCall(request).execute().use {response ->
 
-                    if (it.getBoolean("auth"))
-                        registerEvent.invoke(true)
-                    else
-                        registerEvent.invoke(false)
+            println("response = ${response.message}")
 
+            if(response.message == "ok")
+                return true
 
-                }, Response.ErrorListener {
+        }
 
-                    registerEvent.invoke(false)
-                    Log.d("Requests", it.toString())
+        return false
 
-                }
+    }
 
+    fun registerRequest (register: Login) : Boolean{
 
-            ) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val map: MutableMap<String, String> = mutableMapOf()
-                    map.put("Content-Type", "application/json")
-                    return map
-                }
+        println(register.toJson().toString())
+
+        val requestBody = RequestBody.create(
+            "application/json".toMediaTypeOrNull(),
+            register.toJson().toString()
+        )
+
+        val request = Request.Builder()
+            .url(BASE_API + REGISTER)
+            .post(requestBody)
+            .build()
+
+        OkHttpClient().newCall(request).execute().use {response ->
+
+            println(response)
+
+            if(response.message == "OK")
+                return true
+
+        }
+
+        return false
+
+    }
+
+    fun getLoginByGmail (gmail: String) : Login{
+
+        var login: Login? = null
+
+        val request = Request.Builder()
+            .url(BASE_API + "/gmail/$gmail")
+            .get()
+            .build()
+
+        OkHttpClient().newCall(request).execute().use {response ->
+
+            val jsonArrayStr : String = response.body!!.string()
+            val jsonArray = JSONArray(jsonArrayStr)
+
+            for (index in 0 until jsonArray.length()) {
+                val jsonArticle = jsonArray.get(index) as JSONObject
+                println(jsonArticle)
+                login = Login.fromJson(jsonArticle)
             }
-            queue!!.add(jsonObjectRequest)
+
+            return login!!
         }
     }
 
-    //Function responsible for the account login: POST
-    fun login(context: Context, user: Login, loginEvent: ((Boolean) -> Unit)) {
+    fun getLoginById (id: Int) : Login{
 
-        doAsync {
-            queue = Volley.newRequestQueue(context)
+        var login: Login? = null
 
-            val jsonObjectRequest = object : JsonObjectRequest(
-                Method.POST,
-                BASE_API + AUTHENTIC + LOGIN,
-                user.toJson(),
-                Response.Listener {
+        val request = Request.Builder()
+                .url(BASE_API + "/$id")
+                .get()
+                .build()
 
-                    Log.d("Requests", it.toString())
+        OkHttpClient().newCall(request).execute().use {response ->
 
-                    Log.d("auth", it.toString())
+            val jsonArrayStr : String = response.body!!.string()
+            val jsonArray = JSONArray(jsonArrayStr)
 
-
-                    if (it.getBoolean("auth"))
-                        loginEvent.invoke(true)
-                    else
-                        loginEvent.invoke(false)
-
-
-                }, Response.ErrorListener {
-
-                    Log.d("Requests", it.toString())
-                    loginEvent.invoke(false)
-                }
-            ) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val map: MutableMap<String, String> = mutableMapOf()
-                    map.put("Content-Type", "application/json")
-                    return map
-                }
+            for (index in 0 until jsonArray.length()) {
+                val jsonArticle = jsonArray.get(index) as JSONObject
+                println(jsonArticle)
+                login = Login.fromJson(jsonArticle)
             }
-            queue!!.add(jsonObjectRequest)
+
+            return login!!
         }
     }
 
-    //Function responsible for receive the login account with the gmail selected: GET
-    fun getLoginByGmail(
-        context: Context,
-        gmail: String,
-        getLoginByGmailEvent: ((JSONArray?) -> Unit)
-    ) {
+    fun getAllLogin(callback : (List<Login>) -> Unit){
 
-        println(gmail)
-        doAsync {
-            queue = Volley.newRequestQueue(context)
-            val stringRequest = object : StringRequest(
-                Method.GET,
-                BASE_API + AUTHENTIC + "/gmail/$gmail",
-                Response.Listener {
+        val loginList : MutableList<Login> = arrayListOf()
 
-                    Log.d("Request", it.toString())
-                    getLoginByGmailEvent.invoke(JSONArray(it))
+        val request = Request.Builder().url(BASE_API).build()
 
-                }, Response.ErrorListener {
+        OkHttpClient().newCall(request).execute().use { response ->
 
-                    Log.d("Request", it.toString())
-                    getLoginByGmailEvent.invoke(null)
-                }
-            ) {
-                override fun getHeaders() = mutableMapOf("Content-Type" to "application/json")
+            val loginJsonArrayStr : String = response.body!!.string()
+            val loginJsonArray = JSONArray(loginJsonArrayStr)
+
+            for (index in 0 until loginJsonArray.length()) {
+                val jsonArticle = loginJsonArray.get(index) as JSONObject
+                val login = Login.fromJson(jsonArticle)
+                loginList.add(login)
             }
-            queue!!.add(stringRequest)
+
+            return callback(loginList)
         }
     }
 
-    //Function responsible for receive all the login accounts: GET
-    fun getUserById(context: Context, id: Int, getUserByIdEvent: ((JSONArray?) -> Unit)) {
+    fun removeLogin(id: Int) {
 
-        doAsync {
-            queue = Volley.newRequestQueue(context)
+        val request = Request.Builder()
+                .url(BASE_API + "/${id.toString()}")
+                .delete()
+                .build()
 
-            val stringRequest = object : StringRequest(
-                Method.GET,
-                BASE_API + SCOUT_USER + "/${id}",
-                Response.Listener {
-
-                    getUserByIdEvent.invoke(JSONArray(it))
-
-                }, Response.ErrorListener {
-
-                    Log.d("VolleyHelper", it.toString())
-                    getUserByIdEvent.invoke(null)
-                }
-            ) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val map: MutableMap<String, String> = mutableMapOf()
-                    map.put("Content-Type", "application/json")
-                    return map
-                }
-            }
-            queue!!.add(stringRequest)
-        }
-    }
-
-    //Function responsible for receive all the login accounts: GET
-    fun getAllLogin(context: Context, getAllLoginEvent: ((JSONArray?) -> Unit)) {
-
-        doAsync {
-            queue = Volley.newRequestQueue(context)
-
-            val stringRequest = object : StringRequest(
-                Method.GET,
-                BASE_API + AUTHENTIC,
-                Response.Listener {
-
-                    getAllLoginEvent.invoke(JSONArray(it))
-
-                }, Response.ErrorListener {
-
-                    Log.d("VolleyHelper", it.toString())
-                    getAllLoginEvent.invoke(null)
-                }
-            ) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val map: MutableMap<String, String> = mutableMapOf()
-                    map.put("Content-Type", "application/json")
-                    return map
-                }
-            }
-            queue!!.add(stringRequest)
-        }
-    }
-
-    //Function responsible for delete any login account: DELETE
-    fun deleteLogin(context: Context, id: Int, deleteLoginEvent: ((Boolean) -> Unit)) {
-        doAsync {
-            queue = Volley.newRequestQueue(context)
-
-            val stringRequest = object : StringRequest(
-                Method.DELETE,
-                BASE_API + AUTHENTIC + id,
-                Response.Listener<String> {
-                    deleteLoginEvent.invoke(true)
-                    Log.d("VolleyHelper", it.toString())
-                }, Response.ErrorListener {
-                    deleteLoginEvent.invoke(false)
-                    Log.d("VolleyHelper", it.toString())
-                }
-            ) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val map: MutableMap<String, String> = mutableMapOf()
-                    map.put("Content-Type", "application/json")
-                    return map
-                }
-            }
-
-            queue!!.add(stringRequest)
-        }
-    }
-
-    //Function responsible for receive all the scout accounts: GET
-    fun getAllScoutUsers(context: Context, getAllScoutUsersEvent: ((JSONArray?) -> Unit)) {
-
-        doAsync {
-            queue = Volley.newRequestQueue(context)
-
-            val stringRequest = object : StringRequest(
-                Method.GET,
-                BASE_API + SCOUT_USER,
-                Response.Listener {
-
-                    getAllScoutUsersEvent.invoke(JSONArray(it))
-
-                }, Response.ErrorListener {
-
-                    Log.d("VolleyHelper", it.toString())
-                    getAllScoutUsersEvent.invoke(null)
-                }
-            ) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val map: MutableMap<String, String> = mutableMapOf()
-                    map.put("Content-Type", "application/json")
-                    return map
-                }
-            }
-            queue!!.add(stringRequest)
-        }
-    }
-
-    //Function responsible for the account creation: POST
-    fun createScout(context: Context, user: ScoutUser, createScoutEvent: ((Boolean) -> Unit)) {
-
-        doAsync {
-            queue = Volley.newRequestQueue(context)
-
-            println(user.toJson())
-
-            val jsonObjectRequest = object : JsonObjectRequest(
-                Method.POST,
-                BASE_API + SCOUT_USER,
-                user.toJson(),
-                Response.Listener {
-
-                    createScoutEvent.invoke(true)
-                    Log.d("Requests", it.toString())
-
-                }, Response.ErrorListener {
-
-                    createScoutEvent.invoke(false)
-                    Log.d("Requests", it.toString())
-                }
-            ) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val map: MutableMap<String, String> = mutableMapOf()
-                    map.put("Content-Type", "application/json")
-                    return map
-                }
-            }
-            queue!!.add(jsonObjectRequest)
-        }
-    }
-
-    fun updateScoutUser(
-        context: Context,
-        newUser: ScoutUser,
-        updateScoutUserEvent: ((Boolean) -> Unit)
-    ) {
-        doAsync {
-            queue = Volley.newRequestQueue(context)
-
-            println("newUser.tojson() = " + newUser.toJson())
-
-
-            val jsonObjectRequest = object : JsonObjectRequest(
-                Method.PUT,
-                BASE_API + SCOUT_USER + "/" + newUser.id,
-                newUser.toJson(),
-                Response.Listener {
-
-                    updateScoutUserEvent.invoke(true)
-                    Log.d("VolleyHelper", it.toString())
-
-                }, Response.ErrorListener {
-
-                    updateScoutUserEvent.invoke(false)
-                    Log.d("VolleyHelper", it.toString())
-
-                }
-            ) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val map: MutableMap<String, String> = mutableMapOf()
-                    map.put("Content-Type", "application/json")
-                    return map
-                }
-            }
-            queue!!.add(jsonObjectRequest)
-        }
-    }
-
-    companion object{
-        //const val BASE_API = "intelliscout.amipca.xyz:60000"
-        //const val BASE_API = "http://192.168.1.82:60000"
-        const val BASE_API = "http://intelliscout.ml:60000"
-        const val AUTHENTIC = "/authentic"
-        const val REGISTER = "/register"
-        const val LOGIN = "/login"
-        const val SCOUT_USER = "/scoutUser"
-
-
-
-        private var mInstance : LoginRequest? = LoginRequest()
-
-        val instance : LoginRequest
-            @Synchronized get(){
-                if(null == mInstance){
-                    mInstance = LoginRequest()
-                }
-                return mInstance!!
-            }
+        OkHttpClient().newCall(request).execute().use { }
 
     }
+
 
 }

@@ -1,3 +1,31 @@
 <resources>
-    <string name="app_name">IntelliScout</string>
+
+    <string name="app_name">MenuIntelliscout</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_atividades">Atividades</string>
+    <string name="menu_manual">Manual de Instruções</string>
+    <string name="menu_equipamentos">Adicionar Equipamentos</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_calendario">Calendário</string>
+    <string name="menu_pagina_perfil">Página de Perfil</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_editar_escuteiros">Editar Escuteiros</string>
+    <string name="menu_gerir_escuteiros">Gerir Escuteiros</string>
+    <string name="menu_editar_atividades">Editar Atividades</string>
+    <string name="menu_gerir_atividades">Adicionar Atividade</string>
+    <string name="menu_editar_instrucoes">Editar Instruções</string>
+    <string name="menu_adicionar_instrucoes">Adicionar Instruções</string>
+    <string name="menu_editar_equipamentos">Editar Equipamentos</string>
+    <string name="menu_gerir_equipamentos">Gerir Equipamentos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
+
 </resources>
