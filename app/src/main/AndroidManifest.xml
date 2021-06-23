@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.universe.intelliscout">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IntelliScout">
+
         <activity android:name=".Profile.ProfileActivity"></activity>
         <activity android:name=".Profile.EditProfileActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SplashScreen.SplashScreenActivity">
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".Authentic.LoginActivity" />
+        
+        <activity
+            android:name=".SplashScreen.SplashScreenActivity"
+            android:label="IntelliScout"
+            android:theme="@style/Theme.Design.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

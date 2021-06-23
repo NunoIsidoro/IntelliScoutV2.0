@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.universe.intelliscout.MainActivity
+import com.universe.intelliscout.Authentic.LoginActivity
 import com.universe.intelliscout.R
 
 class OnBoardingFragment3 : Fragment(){
@@ -20,7 +19,7 @@ class OnBoardingFragment3 : Fragment(){
 
         fabNext.setOnClickListener {
 
-            startActivity(Intent(activity, MainActivity::class.java))
+            startActivity(Intent(activity, LoginActivity::class.java))
 
         }
 

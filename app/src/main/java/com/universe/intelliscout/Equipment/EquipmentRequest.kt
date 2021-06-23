@@ -92,7 +92,7 @@ object EquipmentRequest {
     fun removeEquipment(idEquipment: Int) {
 
         val request = Request.Builder()
-            .url(url +"$idEquipment")
+            .url(url + "$idEquipment")
             .delete()
             .build()
 
@@ -100,3 +100,4 @@ object EquipmentRequest {
 
     }
 }
+

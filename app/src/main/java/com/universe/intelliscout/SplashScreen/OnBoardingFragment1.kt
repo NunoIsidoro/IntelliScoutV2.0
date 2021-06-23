@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.universe.intelliscout.MainActivity
+import com.universe.intelliscout.Authentic.LoginActivity
 import com.universe.intelliscout.R
 
 class OnBoardingFragment1 : Fragment() {
@@ -18,7 +18,7 @@ class OnBoardingFragment1 : Fragment() {
         val textViewSkipBoarding1 : TextView = root.findViewById(R.id.textViewSkipBoarding1)
 
         textViewSkipBoarding1.setOnClickListener {
-            startActivity(Intent(activity, MainActivity::class.java))
+            startActivity(Intent(activity, LoginActivity::class.java))
         }
 
         return root
