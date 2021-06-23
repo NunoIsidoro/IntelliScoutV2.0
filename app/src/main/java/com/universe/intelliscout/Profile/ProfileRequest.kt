@@ -58,6 +58,54 @@ object ProfileRequest {
         }
     }
 
+    fun getLocal(id: Int): String {
+
+        // declerate variables
+        var local: String? = null
+        val request = Request.Builder().url(url + "district/$id").get().build()
+
+        // make a request to api, and transform the answer (string) into (json)
+        OkHttpClient().newCall(request).execute().use { response ->
+
+            val jsonArrayStr: String = response.body!!.string()
+            val jsonArray = JSONArray(jsonArrayStr)
+
+            println("jsonArrayStr = $jsonArrayStr")
+            println("jsonArray = $jsonArray")
+
+            for (index in 0 until jsonArray.length()) {
+                val jsonArticle = jsonArray.get(index) as JSONObject
+                local = jsonArticle.getString("district_local")
+            }
+
+            return local!!
+        }
+    }
+
+    fun getTeam(id: Int): String {
+
+        // declerate variables
+        var team: String? = null
+        val request = Request.Builder().url(url + "team/$id").get().build()
+        println(url + "district/$id")
+
+        // make a request to api, and transform the answer (string) into (json)
+        OkHttpClient().newCall(request).execute().use { response ->
+
+            val jsonArrayStr: String = response.body!!.string()
+            val jsonArray = JSONArray(jsonArrayStr)
+
+            println("jsonArrayStr = $jsonArrayStr")
+            println("jsonArray = $jsonArray")
+
+            for (index in 0 until jsonArray.length()) {
+                val jsonArticle = jsonArray.get(index) as JSONObject
+                team = jsonArticle.getString("name_scout_team")
+            }
+
+            return team!!
+        }
+    }
 
     fun addScoutUser(scoutUser: ScoutUser) {
 
@@ -65,6 +113,8 @@ object ProfileRequest {
                 "application/json".toMediaTypeOrNull(),
                 scoutUser.toJson().toString()
         )
+
+        println("addScoutUser, scoutUSer = ${scoutUser.toJson().toString()}")
 
         val request = Request.Builder()
                 .url(url)
@@ -81,6 +131,7 @@ object ProfileRequest {
                 "application/json".toMediaTypeOrNull(),
                 scoutUser.toJson().toString()
         )
+        println(scoutUser.toJson().toString())
 
         val request = Request.Builder()
                 .url(url + "${scoutUser.id}")

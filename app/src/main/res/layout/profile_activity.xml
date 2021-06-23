@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="70dp"
+    android:layout_marginTop="40dp"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
     android:layout_marginBottom="40dp"
@@ -44,19 +45,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewUser"/>
 
-        <Button
-            android:id="@+id/buttonEditProfile"
-            android:layout_width="27dp"
-            android:layout_height="27dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="1dp"
-            android:background="@drawable/edit_icon"
-            app:backgroundTint="#000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias=".71"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewUser"/>
-
 
         <TextView
             android:id="@+id/textViewName"
@@ -67,7 +55,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonEditProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewEditProfile" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutName"
@@ -87,7 +75,7 @@
                 android:id="@+id/textInputEditTextName"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -128,7 +116,7 @@
                 android:id="@+id/textInputEditTextNIN"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -169,7 +157,7 @@
                 android:id="@+id/textInputEditTextBirth"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -210,7 +198,7 @@
                 android:id="@+id/textInputEditTextGender"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -251,7 +239,7 @@
                 android:id="@+id/textInputEditTextContact"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -292,7 +280,7 @@
                 android:id="@+id/textInputEditTextContactEE"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -333,7 +321,7 @@
                 android:id="@+id/textInputEditTextAddress"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -374,7 +362,7 @@
                 android:id="@+id/textInputEditTextDistrict"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -415,7 +403,7 @@
                 android:id="@+id/textInputEditTextEmail"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -456,7 +444,7 @@
                 android:id="@+id/textInputEditTextTeam"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:clickable="false"
                 android:cursorVisible="false"
