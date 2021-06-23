@@ -1,5 +1,6 @@
 package com.universe.intelliscout
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -7,12 +8,18 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.universe.intelliscout.Profile.ProfileActivity
+import com.universe.intelliscout.Profile.ProfileRequest
 import ipca.example.projetosemestre.Models.ScoutUser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
 
     lateinit var toggle: ActionBarDrawerToggle
-    private var user: ScoutUser? = null
+    lateinit var user: ScoutUser
+    lateinit var newUser: ScoutUser
     private var idScout : Int? = null
     private var gmail: String? = null
 
@@ -26,40 +33,60 @@ class HomeActivity : AppCompatActivity() {
         val textViewUserEmail = headerView.findViewById<TextView>(R.id.textViewHeaderEmail)
         val textViewUserName = headerView.findViewById<TextView>(R.id.textviewHeaderUserName)
 
-        val textViewName : TextView = findViewById(R.id.textViewName)
+        val textViewName: TextView = findViewById(R.id.textViewName)
 
 
         val bundle = intent.extras
 
-        bundle?.let{
+        bundle?.let {
             idScout = it.getInt("idScout")
             gmail = it.getString("gmail")
         }
+        println("idScout = $idScout")
+        println(" = $gmail")
 
-        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        GlobalScope.launch(Dispatchers.IO) {
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            user = ProfileRequest.getScoutUser(idScout!!)
 
-        navView.setNavigationItemSelectedListener {
+            GlobalScope.launch(Dispatchers.Main) {
 
-            when(it.itemId){
+                textViewName.text = user.name
+                textViewUserName.text = user.name
+                textViewUserEmail.text = gmail
 
-                R.id.nav_profile ->{
-                    /*
-                        val intent = Intent(this, ProfileActivity::class.java)
+
+                println("textViewName.text = ${textViewName.text}")
+
+
+                toggle = ActionBarDrawerToggle(
+                    this@HomeActivity,
+                    drawerLayout,
+                    R.string.open,
+                    R.string.close
+                )
+                drawerLayout.addDrawerListener(toggle)
+                toggle.syncState()
+
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+                navView.setNavigationItemSelectedListener {
+
+                    when (it.itemId) {
+
+                        R.id.nav_profile -> {
+
+                        val intent = Intent(this@HomeActivity, ProfileActivity::class.java)
                         intent.putExtra("idScout", idScout)
                         intent.putExtra("gmail", gmail)
                         startActivity(intent)
 
-                     */
 
-                }
+                        }
 
-                R.id.nav_edit_profile -> {
+                        R.id.nav_edit_profile -> {
 
-                    /*
+                            /*
                     val intent = Intent(this, EditProfileActivity::class.java)
                     intent.putExtra("idScout", idScout)
                     intent.putExtra("gmail", gmail)
@@ -67,24 +94,24 @@ class HomeActivity : AppCompatActivity() {
 
                      */
 
-                }
+                        }
 
-                R.id.nav_manage_profile ->{
+                        R.id.nav_manage_profile -> {
 
-                    /*
+                            /*
                     val intent = Intent(this, ListProfileActivity::class.java)
                     startActivity(intent)
                      */
 
-                }
+                        }
 
-                R.id.nav_logout -> {
+                        R.id.nav_logout -> {
 
-                    finish()
+                            finish()
 
-                }
+                        }
 
-                /*
+                        /*
                 R.id.nav_activities ->{
 
 
@@ -93,84 +120,83 @@ class HomeActivity : AppCompatActivity() {
 
                  */
 
-                R.id.nav_edit_activities -> {
+                        R.id.nav_edit_activities -> {
 
 
+                        }
 
-                }
-
-                R.id.nav_manage_activities -> {
-                    /*
+                        R.id.nav_manage_activities -> {
+                            /*
                     val intent = Intent(this, ListActivities::class.java)
                     startActivity(intent)
 
                      */
 
 
-                }
+                        }
 
-                R.id.nav_calendar -> {
+                        R.id.nav_calendar -> {
 
 
+                        }
 
-                }
+                        R.id.nav_manual -> {
 
-                R.id.nav_manual -> {
-
-                    /*
+                            /*
                     val intent = Intent(this, ListReadInstructionsActivity::class.java)
                     startActivity(intent)
 
                      */
 
-                }
+                        }
 
-                R.id.nav_edit_instructions -> {
+                        R.id.nav_edit_instructions -> {
 
 
+                        }
 
-                }
+                        R.id.nav_add_instructions -> {
 
-                R.id.nav_add_instructions -> {
-
-                    /*
+                            /*
                     val intent = Intent(this, AddInstructionActivity::class.java)
                     startActivity(intent)
 
                      */
 
-                }
+                        }
 
-                R.id.nav_add_equipment -> {
+                        R.id.nav_add_equipment -> {
 
-                    /*
+                            /*
                     val intent = Intent(this, AddEquipmentActivity::class.java)
                     startActivity(intent)
                      */
 
 
-                }
+                        }
 
-                R.id.nav_edit_equipment -> {
+                        R.id.nav_edit_equipment -> {
 
-                    /*
+                            /*
                     val intent = Intent(this, ListEquipmentActivity::class.java)
                     startActivity(intent)
                      */
 
-                }
+                        }
 
-                R.id.nav_manage_equipment -> {
+                        R.id.nav_manage_equipment -> {
 
-                    /*
+                            /*
                     val intent = Intent(this, EditProfileActivity::class.java)
                     startActivity(intent)
                      */
 
 
+                        }
+                    }
+                    true
                 }
             }
-            true
         }
     }
 
