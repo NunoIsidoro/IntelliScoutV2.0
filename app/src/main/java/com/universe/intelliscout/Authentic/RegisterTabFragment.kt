@@ -14,6 +14,7 @@ import com.google.android.gms.common.SignInButton
 import com.universe.intelliscout.Authentic.LoginRequest
 import com.universe.intelliscout.HomeActivity
 import com.universe.intelliscout.Models.Login
+import com.universe.intelliscout.Profile.ProfileRequest
 import com.universe.intelliscout.R
 import ipca.example.projetosemestre.Models.ScoutUser
 import kotlinx.coroutines.Dispatchers
@@ -107,7 +108,7 @@ class RegisterTabFragment : Fragment() {
                             val newUser = ScoutUser(register.id, "Utilizador", null, null, null, null, 0, null, null, null
                             ,register.id, 1, 1)
 
-                            
+                            ProfileRequest.addScoutUser(newUser)
 
                             GlobalScope.launch(Dispatchers.Main) {
 
