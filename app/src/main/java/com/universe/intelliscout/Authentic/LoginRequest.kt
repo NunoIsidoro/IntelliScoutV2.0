@@ -46,6 +46,7 @@ object LoginRequest {
 
     }
 
+
     fun registerRequest (register: Login) : Boolean {
 
         println(register.toJson().toString())
@@ -65,7 +66,7 @@ object LoginRequest {
             println(response)
 
             if (response.message == "OK")
-                return true
+              return true
 
         }
 

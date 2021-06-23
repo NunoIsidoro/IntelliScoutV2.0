@@ -1,6 +1,7 @@
 package com.universe.intelliscout.Profile
 
-import ipca.example.projetosemestre.Models.ScoutUser
+import ipca.example.projetosemestre.Models.*
+
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -101,6 +102,5 @@ object ProfileRequest {
 
     }
 }
-
 
 
