@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.universe.intelliscout.Profile.ProfileActivity
+import com.universe.intelliscout.Profile.ProfileGetAllActivity
 import com.universe.intelliscout.Profile.ProfileRequest
 import ipca.example.projetosemestre.Models.ScoutUser
 import kotlinx.coroutines.Dispatchers
@@ -98,10 +99,9 @@ class HomeActivity : AppCompatActivity() {
 
                         R.id.nav_manage_profile -> {
 
-                            /*
-                    val intent = Intent(this, ListProfileActivity::class.java)
-                    startActivity(intent)
-                     */
+                            val intent = Intent(this@HomeActivity, ProfileGetAllActivity::class.java)
+                            startActivity(intent)
+
 
                         }
 
