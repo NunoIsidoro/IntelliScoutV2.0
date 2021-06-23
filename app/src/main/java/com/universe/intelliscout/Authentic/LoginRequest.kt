@@ -47,7 +47,9 @@ object LoginRequest {
     }
 
 
-    fun registerRequest (register: Login) : Boolean{
+    fun registerRequest (register: Login) : Boolean {
+
+        println(register.toJson().toString())
 
         val requestBody = RequestBody.create(
             "application/json".toMediaTypeOrNull(),
@@ -59,10 +61,12 @@ object LoginRequest {
             .post(requestBody)
             .build()
 
-        OkHttpClient().newCall(request).execute().use {response ->
+        OkHttpClient().newCall(request).execute().use { response ->
 
-            if(response.message == "ok")
-                return true
+            println(response)
+
+            if (response.message == "OK")
+              return true
 
         }
 

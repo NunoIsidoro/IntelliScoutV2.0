@@ -36,24 +36,6 @@ class HomeActivity : AppCompatActivity() {
             gmail = it.getString("gmail")
         }
 
-/*
-        Requests.instance.getUserById(this, idScout!!) { response ->
-
-            response?.let {
-
-
-                for(index in 0 until it.length()){
-                    val jsonUser = it[index] as JSONObject
-                    user = ScoutUser.fromJson(jsonUser)
-                }
-            }
-
-            textViewName.text = user?.name
-            textViewUserEmail.text = gmail
-
-        }
-*/
-
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
