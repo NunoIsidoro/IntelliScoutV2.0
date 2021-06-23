@@ -72,6 +72,31 @@ object LoginRequest {
         return false
 
     }
+    
+
+    fun registerRequest (register: Login) : Boolean{
+
+        val requestBody = RequestBody.create(
+            "application/json".toMediaTypeOrNull(),
+            register.toJson().toString()
+        )
+
+        val request = Request.Builder()
+            .url(BASE_API + REGISTER)
+            .post(requestBody)
+            .build()
+
+        OkHttpClient().newCall(request).execute().use {response ->
+
+            if(response.message == "ok")
+                return true
+
+        }
+
+        return false
+
+    }
+    
 
     fun getLoginByGmail (gmail: String) : Login{
 
@@ -96,6 +121,8 @@ object LoginRequest {
             return login!!
         }
     }
+    
+
 
     fun getLoginById (id: Int) : Login{
 
@@ -120,8 +147,10 @@ object LoginRequest {
             return login!!
         }
     }
+    
 
-    fun getAllLogin(callback : (List<Login>) -> Unit){
+    
+    fun getAllLogin (callBack: (List<Login>)->Unit) {
 
         val loginList : MutableList<Login> = arrayListOf()
 
@@ -138,16 +167,16 @@ object LoginRequest {
                 loginList.add(login)
             }
 
-            return callback(loginList)
+            callBack(loginList)
         }
     }
 
     fun removeLogin(id: Int) {
 
         val request = Request.Builder()
-                .url(BASE_API + "/${id.toString()}")
-                .delete()
-                .build()
+            .url(BASE_API + "/${id.toString()}")
+            .delete()
+            .build()
 
         OkHttpClient().newCall(request).execute().use { }
 
