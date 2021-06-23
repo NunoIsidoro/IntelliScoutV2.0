@@ -140,7 +140,7 @@ class EditProfileActivity : AppCompatActivity() {
                             .setSingleChoiceItems(listDistricts.toTypedArray(), checkedItem) { dialog, which ->
                                 // Respond to item chosen
                                 textInputEditTextDistrict.setText(listDistricts[which])
-                                idLocal = which
+                                idLocal = which + 1
                                 println(which)
                             }
                             .show()
@@ -156,7 +156,7 @@ class EditProfileActivity : AppCompatActivity() {
                 if (textInputEditTextName.text!!.isEmpty() || textInputEditTextAddress.text!!.isEmpty()
                         || textInputEditTextContact.text!!.isEmpty() || textInputEditTextNIN.text!!.isEmpty()) {
 
-                    Toast.makeText(this, "Por favo preencha todos os campos obrigatórios!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Por favor preencha todos os campos obrigatórios!", Toast.LENGTH_SHORT).show()
 
                 } else {
 
