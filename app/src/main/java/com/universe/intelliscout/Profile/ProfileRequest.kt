@@ -1,23 +1,13 @@
-/*package com.universe.intelliscout.Profile
+package com.universe.intelliscout.Profile
 
-import android.content.Context
-import android.util.Log
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.universe.intelliscout.Models.Login
-import com.universe.intelliscout.Models.Equipment
-import com.universe.intelliscout.Models.Instruction
-import ipca.example.projetosemestre.Models.*
+import ipca.example.projetosemestre.Models.ScoutUser
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
-import org.jetbrains.anko.doAsync
 import org.json.JSONArray
 import org.json.JSONObject
+
 
 object ProfileRequest {
 
@@ -43,9 +33,9 @@ object ProfileRequest {
         }
     }
 
-    /*
-        This function receive an INT and return an Equipment (Json)
-    */
+
+    //This function receive an INT and return an Equipment (Json)
+
     fun getScoutUser(id: Int): ScoutUser {
 
         // declerate variables
@@ -71,14 +61,14 @@ object ProfileRequest {
     fun addScoutUser(scoutUser: ScoutUser) {
 
         val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            scoutUser.toJson().toString()
+                "application/json".toMediaTypeOrNull(),
+                scoutUser.toJson().toString()
         )
 
         val request = Request.Builder()
-            .url(url)
-            .post(requestBody)
-            .build()
+                .url(url)
+                .post(requestBody)
+                .build()
 
         OkHttpClient().newCall(request).execute().use {}
 
@@ -87,14 +77,14 @@ object ProfileRequest {
     fun editScoutUser(scoutUser: ScoutUser) {
 
         val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            scoutUser.toJson().toString()
+                "application/json".toMediaTypeOrNull(),
+                scoutUser.toJson().toString()
         )
 
         val request = Request.Builder()
-            .url(url + "${scoutUser.id}")
-            .put(requestBody)
-            .build()
+                .url(url + "${scoutUser.id}")
+                .put(requestBody)
+                .build()
 
         OkHttpClient().newCall(request).execute().use {}
 
@@ -103,11 +93,14 @@ object ProfileRequest {
     fun removeScoutUser(idScoutUser: Int) {
 
         val request = Request.Builder()
-            .url(url +"$idScoutUser")
-            .delete()
-            .build()
+                .url(url + "$idScoutUser")
+                .delete()
+                .build()
 
         OkHttpClient().newCall(request).execute().use { }
 
     }
+}
+
+
 
