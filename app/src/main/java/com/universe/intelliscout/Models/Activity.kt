@@ -4,18 +4,25 @@ import org.json.JSONObject
 
 class Activity {
 
-    var id : Int? = null
-    var name : String? = null
-    var dtStart : String? = null
-    var hourStart : String? = null
-    var idLocal : Int? = null
-    var idActivityType :Int? = null
+    var id: Int? = null
+    var name: String? = null
+    var dtStart: String? = null
+    var hourStart: String? = null
+    var idLocal: Int? = null
+    var idActivityType: Int? = null
 
-    constructor(){
+    constructor()
 
-    }
-
-    constructor(id: Int?, name: String?, dtStart: String?, dtEnd: String?, hourStart: String?, hourEnd: String?, idActivityLocal: Int?, idActivityType: Int?){
+    constructor(
+        id: Int?,
+        name: String?,
+        dtStart: String?,
+        dtEnd: String?,
+        hourStart: String?,
+        hourEnd: String?,
+        idActivityLocal: Int?,
+        idActivityType: Int?
+    ) {
 
         this.id = id
         this.name = name
@@ -26,7 +33,7 @@ class Activity {
 
     }
 
-    fun toJson () : JSONObject {
+    fun toJson(): JSONObject {
         val jsonObject = JSONObject()
         jsonObject.put("id", id)
         jsonObject.put("name", name)
@@ -34,12 +41,12 @@ class Activity {
         jsonObject.put("hourStart", hourStart)
         jsonObject.put("idLocal", idLocal)
         jsonObject.put("idActivityType", idActivityType)
-        return  jsonObject
+        return jsonObject
     }
 
     companion object {
 
-        fun fromJson(jsonArticle: JSONObject) : Activity {
+        fun fromJson(jsonArticle: JSONObject): Activity {
             val activity = Activity()
 
             activity.id = jsonArticle.getInt("id_activity")

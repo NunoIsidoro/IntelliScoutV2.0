@@ -1,16 +1,20 @@
 package com.universe.intelliscout
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.universe.intelliscout.Authentic.LoginRequest
 import com.universe.intelliscout.Equipment.AddEquipmentActivity
 import com.universe.intelliscout.Equipment.ListEditEquipmentActivity
 import com.universe.intelliscout.Equipment.ListEquipmentActivity
+import com.universe.intelliscout.Models.Login
+import com.universe.intelliscout.Activities.GetAllActivities
+import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileActivity
 import com.universe.intelliscout.Profile.ProfileGetAllActivity
 import com.universe.intelliscout.Profile.ProfileRequest
@@ -23,8 +27,10 @@ class HomeActivity : AppCompatActivity() {
 
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var user: ScoutUser
-    lateinit var newUser: ScoutUser
-    private var idScout : Int? = null
+
+    lateinit var loginUser: Login
+    private var idScout: Int? = null
+
     private var gmail: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,22 +52,27 @@ class HomeActivity : AppCompatActivity() {
             idScout = it.getInt("idScout")
             gmail = it.getString("gmail")
         }
-        println("idScout = $idScout")
-        println(" = $gmail")
+
 
         GlobalScope.launch(Dispatchers.IO) {
 
             user = ProfileRequest.getScoutUser(idScout!!)
 
+
+            if(gmail != null)
+                loginUser = LoginRequest.getLoginByGmail(gmail!!)
+
+
             GlobalScope.launch(Dispatchers.Main) {
+
+                if(loginUser.role == 3)
+                    navView.inflateMenu(R.menu.menu_scout)
+                else
+                    navView.inflateMenu(R.menu.menu_main)
 
                 textViewName.text = user.name
                 textViewUserName.text = user.name
                 textViewUserEmail.text = gmail
-
-
-                println("textViewName.text = ${textViewName.text}")
-
 
                 toggle = ActionBarDrawerToggle(
                     this@HomeActivity,
@@ -74,35 +85,37 @@ class HomeActivity : AppCompatActivity() {
 
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+                supportActionBar?.setTitle("Página Principal")
+
+
+                //supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
+                //supportActionBar?.setCustomView(R.layout.abs_layout)
+
                 navView.setNavigationItemSelectedListener {
 
                     when (it.itemId) {
 
                         R.id.nav_profile -> {
 
-                        val intent = Intent(this@HomeActivity, ProfileActivity::class.java)
-                        intent.putExtra("idScout", idScout)
-                        intent.putExtra("gmail", gmail)
-                        startActivity(intent)
-
+                            val intent = Intent(this@HomeActivity, ProfileActivity::class.java)
+                            intent.putExtra("idScout", idScout)
+                            intent.putExtra("gmail", gmail)
+                            startActivity(intent)
 
                         }
 
                         R.id.nav_edit_profile -> {
 
-                            /*
-                    val intent = Intent(this, EditProfileActivity::class.java)
-                    intent.putExtra("idScout", idScout)
-                    intent.putExtra("gmail", gmail)
-                    startActivity(intent)
-
-                     */
+                            val intent = Intent(this@HomeActivity, EditProfileActivity::class.java)
+                            intent.putExtra("idScout", idScout)
+                            startActivity(intent)
 
                         }
 
                         R.id.nav_manage_profile -> {
 
-                            val intent = Intent(this@HomeActivity, ProfileGetAllActivity::class.java)
+                            val intent =
+                                Intent(this@HomeActivity, ProfileGetAllActivity::class.java)
                             startActivity(intent)
 
 
@@ -114,32 +127,22 @@ class HomeActivity : AppCompatActivity() {
 
                         }
 
-                        /*
-                R.id.nav_activities ->{
 
+                        R.id.nav_calendar -> {
+                            val intent = Intent(this@HomeActivity, GetAllActivities::class.java)
+                            startActivity(intent)
 
-
-                }
-
-                 */
+                        }
 
                         R.id.nav_edit_activities -> {
-
 
                         }
 
                         R.id.nav_manage_activities -> {
-                            /*
-                    val intent = Intent(this, ListActivities::class.java)
-                    startActivity(intent)
-
-                     */
-
 
                         }
 
                         R.id.nav_calendar -> {
-
 
                         }
 
@@ -175,7 +178,6 @@ class HomeActivity : AppCompatActivity() {
                             startActivity(intent)
 
 
-
                         }
 
                         R.id.nav_edit_equipment -> {
@@ -201,7 +203,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)

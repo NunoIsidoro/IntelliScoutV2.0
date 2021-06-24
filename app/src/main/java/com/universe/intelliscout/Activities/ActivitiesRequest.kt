@@ -5,6 +5,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -41,7 +42,7 @@ object ActivitiesRequest {
     fun getActivity(id: Int): Activity {
 
         var activity: Activity? = null
-        val request = Request.Builder().url(url+ "$id").build()
+        val request = Request.Builder().url(url + "$id").build()
 
         OkHttpClient().newCall(request).execute().use { response ->
 
@@ -60,10 +61,8 @@ object ActivitiesRequest {
 
     fun addActivity(activity: Activity) {
 
-        val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            activity.toJson().toString()
-        )
+        val requestBody = activity.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(url)
@@ -76,10 +75,8 @@ object ActivitiesRequest {
 
     fun editActivity(activity: Activity) {
 
-        val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            activity.toJson().toString()
-        )
+        val requestBody = activity.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(url + "{activity.id}")

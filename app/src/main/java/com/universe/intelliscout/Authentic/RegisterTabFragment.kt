@@ -1,6 +1,5 @@
 package ipca.example.projetosemestre.ui.Login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +13,7 @@ import com.google.android.gms.common.SignInButton
 import com.universe.intelliscout.Authentic.LoginRequest
 import com.universe.intelliscout.HomeActivity
 import com.universe.intelliscout.Models.Login
+import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileRequest
 import com.universe.intelliscout.R
 import ipca.example.projetosemestre.Models.ScoutUser
@@ -23,12 +23,12 @@ import kotlinx.coroutines.launch
 
 class RegisterTabFragment : Fragment() {
 
-    lateinit var editTextEmail : EditText
-    lateinit var editTextPassword : EditText
-    lateinit var editTextConfirmPassword : EditText
-    lateinit var buttonRegister : Button
-    lateinit var signIn : SignInButton
-    lateinit var root : ViewGroup
+    lateinit var editTextEmail: EditText
+    lateinit var editTextPassword: EditText
+    lateinit var editTextConfirmPassword: EditText
+    lateinit var buttonRegister: Button
+    lateinit var signIn: SignInButton
+    lateinit var root: ViewGroup
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,34 +54,32 @@ class RegisterTabFragment : Fragment() {
 
         buttonRegister.setOnClickListener {
 
-            if (editTextEmail.text.isEmpty())
-            {
-                editTextEmail.setError("Por favor, preencha este campo!")
-            }
-            else if (editTextPassword.text.isEmpty())
-            {
-                editTextPassword.setError("Por favor, preencha este campo!")
-            }
-            else if (editTextConfirmPassword.text.isEmpty())
-            {
-                editTextConfirmPassword.setError("Por favor, preencha este campo!")
-            }
-            else if (!(editTextConfirmPassword.text.toString().equals(editTextPassword.text.toString()))) {
+            if (editTextEmail.text.isEmpty()) {
+                editTextEmail.error = "Por favor, preencha este campo!"
+            } else if (editTextPassword.text.isEmpty()) {
+                editTextPassword.error = "Por favor, preencha este campo!"
+            } else if (editTextConfirmPassword.text.isEmpty()) {
+                editTextConfirmPassword.error = "Por favor, preencha este campo!"
+            } else if (!(editTextConfirmPassword.text.toString()
+                    .equals(editTextPassword.text.toString()))
+            ) {
 
-                editTextConfirmPassword.setError("Esta palavra-passe não coincide com a que inseriu!")
+                editTextConfirmPassword.error = "Esta palavra-passe não coincide com a que inseriu!"
             } else if (!editTextEmail.text.toString().contains("@")) {
 
-                editTextEmail.setError("O email tem de conter '@'")
+                editTextEmail.error = "O email tem de conter '@'"
 
             } else {
 
-                val register = Login(editTextEmail.text.toString(), editTextPassword.text.toString(),
-                    null, 3)
+                val register = Login(
+                    editTextEmail.text.toString(), editTextPassword.text.toString(),
+                    null, 3
+                )
 
                 var stopRequest = false
-                val loginList : MutableList<Login> = ArrayList()
+                val loginList: MutableList<Login> = ArrayList()
                 GlobalScope.launch(Dispatchers.IO) {
-                    LoginRequest.getAllLogin() {
+                    LoginRequest.getAllLogin {
                         loginList.addAll(it)
                     }
 
@@ -97,26 +95,44 @@ class RegisterTabFragment : Fragment() {
 
                     if (stopRequest) {
                         GlobalScope.launch(Dispatchers.Main) {
-                            Toast.makeText(context, "Conta gmail já está em uso!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                context,
+                                "Conta gmail já está em uso!",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     } else {
 
                         val registerResult = LoginRequest.registerRequest(register)
 
+                        val accountRegister = LoginRequest.getLoginByGmail(register.gmail!!)
+
+                        println("registerResult = $registerResult")
+                        println("accountRegister.toJson() = ${accountRegister.toJson()}")
+
                         if (registerResult) {
 
-                            val newUser = ScoutUser(register.id, "Utilizador", null, null, null, null, 0, null, null, null
-                            ,register.id, 1, 1)
+
+                            val newUser = ScoutUser(
+                                accountRegister.id, "null", "2010-09-10", 0,
+                                "null", "null", 0, "null", "null", "null", accountRegister.id, 1, 1
+                            )
 
                             ProfileRequest.addScoutUser(newUser)
 
                             GlobalScope.launch(Dispatchers.Main) {
 
-                                Toast.makeText(context, "Registado com sucesso!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "Registado com sucesso!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
 
-                                val intent = Intent(context, HomeActivity::class.java)
-                                intent.putExtra("idScout", register.id)
+                                println(newUser.id)
+
+                                val intent = Intent(context, EditProfileActivity::class.java)
                                 intent.putExtra("gmail", register.gmail)
+                                intent.putExtra("idScout", newUser.id)
                                 startActivity(intent)
 
                             }
@@ -125,7 +141,11 @@ class RegisterTabFragment : Fragment() {
 
                             GlobalScope.launch(Dispatchers.Main) {
 
-                                Toast.makeText(context, "Problema ao registar, por favor tente novamente!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    context,
+                                    "Problema ao registar, por favor tente novamente!",
+                                    Toast.LENGTH_LONG
+                                ).show()
 
                             }
                         }
@@ -135,7 +155,7 @@ class RegisterTabFragment : Fragment() {
         }
     }
 
-    companion object{
+    companion object {
 
         const val RC_SIGN_IN = 123
 

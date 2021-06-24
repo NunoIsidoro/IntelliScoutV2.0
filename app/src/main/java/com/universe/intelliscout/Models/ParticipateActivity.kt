@@ -4,21 +4,19 @@ import org.json.JSONObject
 
 class ParticipateActivity {
 
-    var idScoutUser : Int? = null
-    var idActivity : Int? = null
+    var idScoutUser: Int? = null
+    var idActivity: Int? = null
 
-    constructor(){
+    constructor()
 
-    }
-
-    constructor(idScoutUser: Int?, idActivity: Int?){
+    constructor(idScoutUser: Int?, idActivity: Int?) {
 
         this.idScoutUser = idScoutUser
         this.idActivity = idActivity
 
     }
 
-    fun toJson () : JSONObject {
+    fun toJson(): JSONObject {
         val jsonObject = JSONObject()
         jsonObject.put("idScoutUser", idScoutUser)
         jsonObject.put("idActivity", idActivity)
@@ -28,7 +26,7 @@ class ParticipateActivity {
 
     companion object {
 
-        fun fromJson(jsonArticle: JSONObject) : ParticipateActivity {
+        fun fromJson(jsonArticle: JSONObject): ParticipateActivity {
             val participateActivity = ParticipateActivity()
 
             participateActivity.idScoutUser = jsonArticle.getInt("idScoutUser")

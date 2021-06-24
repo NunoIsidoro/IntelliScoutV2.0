@@ -1,30 +1,40 @@
 package ipca.example.projetosemestre.Models
 
 import org.json.JSONObject
-import java.net.Inet4Address
-import java.util.concurrent.atomic.DoubleAdder
 
 class ScoutUser {
 
-    var id : Int? = null
-    var name : String? = null
-    var birth : String? = null //Analisar
-    var gender : Int? = null  //Analisar
-    var phone : String? = null
-    var address : String? = null
-    var active : Int? = null //Mudar para Int na base de dados
-    var nin : String? = null
-    var phoneEE : String? = null
-    var urlImg : String? = null
-    var idScoutLogin : Int? = null
-    var idScoutTeam : Int? = null
-    var idLocal : Int? = null
+    var id: Int? = null
+    var name: String? = null
+    var birth: String? = null //Analisar
+    var gender: Int? = null  //Analisar
+    var phone: String? = null
+    var address: String? = null
+    var active: Int? = null //Mudar para Int na base de dados
+    var nin: String? = null
+    var phoneEE: String? = null
+    var urlImg: String? = null
+    var idScoutLogin: Int? = null
+    var idScoutTeam: Int? = null
+    var idLocal: Int? = null
 
-    constructor(){
+    constructor()
 
-    }
-
-    constructor(id: Int?, name: String?, birth: String?, gender: Int?, phone: String?, address: String?, active: Int?, nin: String?, phoneEE: String?, urlImg: String?, idScoutLogin: Int?, idScoutTeam: Int?, idLocal: Int?){
+    constructor(
+        id: Int?,
+        name: String?,
+        birth: String?,
+        gender: Int?,
+        phone: String?,
+        address: String?,
+        active: Int?,
+        nin: String?,
+        phoneEE: String?,
+        urlImg: String?,
+        idScoutLogin: Int?,
+        idScoutTeam: Int?,
+        idLocal: Int?
+    ) {
 
         this.id = id
         this.name = name
@@ -42,7 +52,7 @@ class ScoutUser {
 
     }
 
-    fun toJson() : JSONObject {
+    fun toJson(): JSONObject {
         val jsonObject = JSONObject()
         jsonObject.put("id", id)
         jsonObject.put("name", name)
@@ -56,14 +66,14 @@ class ScoutUser {
         jsonObject.put("url_img", urlImg)
         jsonObject.put("scout_login", idScoutLogin)
         jsonObject.put("scout_team", idScoutTeam)
-        jsonObject.put("local", idLocal)
+        jsonObject.put("id_local", idLocal)
 
-        return  jsonObject
+        return jsonObject
     }
 
     companion object {
 
-        fun fromJson(jsonArticle: JSONObject) : ScoutUser {
+        fun fromJson(jsonArticle: JSONObject): ScoutUser {
             val scoutUser = ScoutUser()
 
             scoutUser.id = jsonArticle.getInt("id_scout_user")

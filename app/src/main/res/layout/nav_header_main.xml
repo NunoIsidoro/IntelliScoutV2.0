@@ -31,9 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Android Studio"
-        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textViewHeaderEmail"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -41,10 +40,9 @@
         android:id="@+id/textViewHeaderEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"
-        android:text="gmail@gmail.com"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,7 +48,7 @@
                 android:id="@+id/textViewName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Utilizador"
+                android:hint=""
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:gravity="center"
@@ -92,7 +92,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"/>
 

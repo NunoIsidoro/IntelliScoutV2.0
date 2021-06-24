@@ -5,6 +5,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -59,10 +60,8 @@ object InstructionCatalogRequest {
 
     fun addInstCatalog(instCatalog: InstructionCatalog) {
 
-        val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            instCatalog.toJson().toString()
-        )
+        val requestBody = instCatalog.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(url)
@@ -75,10 +74,8 @@ object InstructionCatalogRequest {
 
     fun editInstCatalog(instCatalog: InstructionCatalog) {
 
-        val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            instCatalog.toJson().toString()
-        )
+        val requestBody = instCatalog.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(url + "${instCatalog.id}")

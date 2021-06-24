@@ -1,13 +1,13 @@
 package com.universe.intelliscout.Equipment
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.universe.intelliscout.Models.Equipment
 import com.universe.intelliscout.R
 import kotlinx.coroutines.Dispatchers
@@ -16,8 +16,8 @@ import kotlinx.coroutines.launch
 
 class ListEquipmentActivity : AppCompatActivity() {
 
-    var equipments : MutableList<Equipment> = ArrayList()
-    var equipmentAdapter : EquipmentAdapter? = null
+    var equipments: MutableList<Equipment> = ArrayList()
+    var equipmentAdapter: EquipmentAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +28,9 @@ class ListEquipmentActivity : AppCompatActivity() {
         equipmentAdapter = EquipmentAdapter()
         listViewEquipment.adapter = equipmentAdapter
 
-        GlobalScope.launch(Dispatchers.IO){
+        GlobalScope.launch(Dispatchers.IO) {
 
-            EquipmentRequest.getAllEquipment{
+            EquipmentRequest.getAllEquipment {
 
                 equipments.addAll(it)
 
@@ -43,7 +43,7 @@ class ListEquipmentActivity : AppCompatActivity() {
         }
     }
 
-    inner class EquipmentAdapter: BaseAdapter() {
+    inner class EquipmentAdapter : BaseAdapter() {
         override fun getCount(): Int {
 
             //tamanho do array equipamneto
@@ -71,18 +71,7 @@ class ListEquipmentActivity : AppCompatActivity() {
             textViewEquipmentName.text = equipments[position].name
             textViewQuantityValue.text = equipments[position].quantity.toString()
 
-
             return rowView
         }
-
-    }
-
-    private fun openEditEquipmentActivity(id: Int, name: String, quantity: Int, descr: String) {
-        val intent = Intent(this, EditEquipmentActivity :: class.java)
-        intent.putExtra("id", id)
-        intent.putExtra("name", name)
-        intent.putExtra("quantity", quantity)
-        intent.putExtra("descr", descr)
-        startActivity(intent)
     }
 }
