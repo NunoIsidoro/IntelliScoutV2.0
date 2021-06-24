@@ -44,15 +44,22 @@ class ProfileActivity : AppCompatActivity() {
 
         }
 
+
         GlobalScope.launch(Dispatchers.IO){
 
             val user = ProfileRequest.getScoutUser(idScout!!)
+
+            GlobalScope.launch(Dispatchers.Main){
+
+            }
 
             val local = ProfileRequest.getLocal(user.idLocal!!)
 
             val team = ProfileRequest.getTeam(user.idScoutTeam!!)
 
                 GlobalScope.launch(Dispatchers.Main){
+
+                    println(user.idLocal)
 
                 val birthString = UtilFunctions().receiveBirthFromDatabaseToString(user.birth!!)
 

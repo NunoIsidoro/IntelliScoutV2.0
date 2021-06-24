@@ -29,7 +29,6 @@ class EditProfileActivity : AppCompatActivity() {
         var birthString: String? = null
         var gender: Int? = null
         var idLocal: Int? = null
-        var date: Date? = null
         val listDistricts: MutableList<String> = ArrayList()
         val loginList: MutableList<Login> = ArrayList()
 
@@ -61,6 +60,8 @@ class EditProfileActivity : AppCompatActivity() {
 
             GlobalScope.launch(Dispatchers.Main) {
 
+                idLocal = user.idLocal
+
                 if (user.nin != "null") {
                     textInputEditTextNIN.setText(user.nin)
                 }
@@ -84,6 +85,8 @@ class EditProfileActivity : AppCompatActivity() {
                     radioButtonMasculine.isSelected = true
                 }
 
+                birthString = UtilFunctions().receiveBirthFromDatabaseToString(user.birth!!)
+
                 //Receive the date from the database in Calendar
                 var birth = UtilFunctions().receiveBirthFromDatabaseToCalendar(user.birth.toString())
 
@@ -94,14 +97,14 @@ class EditProfileActivity : AppCompatActivity() {
                 ) { view, year, month, day ->
 
                     birth = UtilFunctions().datePickertoDateFormat(day, (month + 1), year)
+
+                    birthString = UtilFunctions().dateToString(
+                            birth.get(Calendar.DAY_OF_MONTH),
+                            (birth.get(Calendar.MONTH) + 1),
+                            birth.get(Calendar.YEAR))
+
                 }
 
-                birthString = UtilFunctions().dateToString(
-                        birth.get(Calendar.DAY_OF_MONTH),
-                        (birth.get(Calendar.MONTH) + 1),
-                        birth.get(Calendar.YEAR))
-
-                println(birthString)
             }
 
 
@@ -115,7 +118,7 @@ class EditProfileActivity : AppCompatActivity() {
 
             GlobalScope.launch(Dispatchers.Main){
 
-                textInputEditTextDistrict.setText(listDistricts[user.idLocal!!])
+                textInputEditTextDistrict.setText(listDistricts[user.idLocal!! - 1])
 
                 val singleItems = arrayOf("Item 1", "Item 2", "Item 3")
                 //listDistricts.toTypedArray()
@@ -159,6 +162,8 @@ class EditProfileActivity : AppCompatActivity() {
                     Toast.makeText(this, "Por favor preencha todos os campos obrigatórios!", Toast.LENGTH_SHORT).show()
 
                 } else {
+
+                    println("idLocal = $idLocal")
 
 
                     val newUser = ScoutUser(idScout, textInputEditTextName.text.toString(),

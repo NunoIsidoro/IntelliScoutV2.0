@@ -1,5 +1,9 @@
 package com.universe.intelliscout.Utils
 import android.widget.DatePicker
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,7 +40,9 @@ class UtilFunctions {
 
     fun dateToString(day: Int, month: Int, year: Int): String{
 
-        return "$year-$month-$day"
+        val f: NumberFormat = DecimalFormat("00")
+
+        return "$year-${f.format(month)}-${f.format(day)}"
 
     }
 
