@@ -62,19 +62,18 @@ class ListEditEquipmentActivity : AppCompatActivity() {
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val rowView = layoutInflater.inflate(R.layout.equipment_edit_row, parent, false)
+            val rowView = layoutInflater.inflate(R.layout.equipment_row, parent, false)
 
             //declaração das textViews e botões
             val textViewEquipmentName = rowView.findViewById<TextView>(R.id.textViewEquipmentName)
-            val textViewQuantityValue = rowView.findViewById<TextView>(R.id.textViewQuantityValue)
-            val buttonEditEquipment = rowView.findViewById<Button>(R.id.buttonEditEquipment)
+            val textViewQuantityValue = rowView.findViewById<TextView>(R.id.textViewQuantity)
 
             //enviar os dados da classe equipamento para as textViews
             textViewEquipmentName.text = equipments[position].name
             textViewQuantityValue.text = equipments[position].quantity.toString()
 
             // ao ser pressionado o botão irá seer aberta uma página para editar os equipamentos
-            buttonEditEquipment.setOnClickListener {
+            rowView.setOnClickListener {
                 openEditEquipmentActivity(equipments[position].id!!, equipments[position].name!!,
                     equipments[position].quantity!!, equipments[position].descr!!)
                 finish()

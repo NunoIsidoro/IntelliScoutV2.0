@@ -65,11 +65,11 @@ class ListEquipmentActivity : AppCompatActivity() {
 
             //declaração das textViews e botões
             val textViewEquipmentName = rowView.findViewById<TextView>(R.id.textViewEquipmentName)
-            val textViewQuantityValue = rowView.findViewById<TextView>(R.id.textViewQuantityValue)
+            val textViewQuantity = rowView.findViewById<TextView>(R.id.textViewQuantity)
 
             //enviar os dados da classe equipamento para as textViews
             textViewEquipmentName.text = equipments[position].name
-            textViewQuantityValue.text = equipments[position].quantity.toString()
+            textViewQuantity.text = equipments[position].quantity.toString()
 
             return rowView
         }
