@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import com.universe.intelliscout.Models.Equipment
@@ -14,18 +15,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class ListEquipmentActivity : AppCompatActivity() {
+class ListEditEquipmentActivity : AppCompatActivity() {
 
     var equipments : MutableList<Equipment> = ArrayList()
-    var equipmentAdapter : EquipmentAdapter? = null
+    var equipmentAdapter : EquipmentEditAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.equipment_list_activity)
+        setContentView(R.layout.equipment_edit_list_activity)
 
         val listViewEquipment = findViewById<ListView>(R.id.listViewEquipment)
 
-        equipmentAdapter = EquipmentAdapter()
+        equipmentAdapter = EquipmentEditAdapter()
         listViewEquipment.adapter = equipmentAdapter
 
         GlobalScope.launch(Dispatchers.IO){
@@ -43,7 +44,7 @@ class ListEquipmentActivity : AppCompatActivity() {
         }
     }
 
-    inner class EquipmentAdapter: BaseAdapter() {
+    inner class EquipmentEditAdapter: BaseAdapter() {
         override fun getCount(): Int {
 
             //tamanho do array equipamneto
@@ -61,15 +62,23 @@ class ListEquipmentActivity : AppCompatActivity() {
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val rowView = layoutInflater.inflate(R.layout.equipment_row, parent, false)
+            val rowView = layoutInflater.inflate(R.layout.equipment_edit_row, parent, false)
 
             //declaração das textViews e botões
             val textViewEquipmentName = rowView.findViewById<TextView>(R.id.textViewEquipmentName)
             val textViewQuantityValue = rowView.findViewById<TextView>(R.id.textViewQuantityValue)
+            val buttonEditEquipment = rowView.findViewById<Button>(R.id.buttonEditEquipment)
 
             //enviar os dados da classe equipamento para as textViews
             textViewEquipmentName.text = equipments[position].name
             textViewQuantityValue.text = equipments[position].quantity.toString()
+
+            // ao ser pressionado o botão irá seer aberta uma página para editar os equipamentos
+            buttonEditEquipment.setOnClickListener {
+                openEditEquipmentActivity(equipments[position].id!!, equipments[position].name!!,
+                    equipments[position].quantity!!, equipments[position].descr!!)
+                finish()
+            }
 
 
             return rowView
