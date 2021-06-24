@@ -61,14 +61,10 @@ class HomeActivity : AppCompatActivity() {
 
             if(gmail != null)
                 loginUser = LoginRequest.getLoginByGmail(gmail!!)
-                
-            GlobalScope.launch(Dispatchers.Main) {
-
-                if (user.active == 0) {
 
             GlobalScope.launch(Dispatchers.Main) {
 
-                if(loginUser.role == 3)
+                if (loginUser.role == 3)
                     navView.inflateMenu(R.menu.menu_scout)
                 else
                     navView.inflateMenu(R.menu.menu_main)
@@ -78,10 +74,10 @@ class HomeActivity : AppCompatActivity() {
                 textViewUserEmail.text = gmail
 
                 toggle = ActionBarDrawerToggle(
-                    this@HomeActivity,
-                    drawerLayout,
-                    R.string.open,
-                    R.string.close
+                        this@HomeActivity,
+                        drawerLayout,
+                        R.string.open,
+                        R.string.close
                 )
                 drawerLayout.addDrawerListener(toggle)
                 toggle.syncState()
@@ -89,6 +85,7 @@ class HomeActivity : AppCompatActivity() {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
                 supportActionBar?.setTitle("Página Principal")
+
 
 
                 //supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
