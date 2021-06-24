@@ -36,7 +36,6 @@ class ProfileGetAllActivity : AppCompatActivity() {
             }
             GlobalScope.launch(Dispatchers.Main) {
                 scoutUserAdapter.notifyDataSetChanged()
-
             }
         }
     }

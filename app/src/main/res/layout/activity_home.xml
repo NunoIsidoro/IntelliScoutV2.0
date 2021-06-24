@@ -5,7 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1F54C3"
+    android:background="@drawable/home_activity_background"
     tools:context=".HomeActivity">
 
     <ScrollView
@@ -24,7 +24,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/ic_baseline_perfil"
+                android:background="@drawable/avatar"
                 android:foregroundGravity="center_horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="Bem-vindo de volta!"
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 android:layout_marginTop="15dp"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +50,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint=""
+                android:textColorHint="@color/white"
+                android:textStyle="bold"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:gravity="center"
@@ -58,8 +61,79 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewBemVindo"
                 app:layout_constraintWidth_percent=".8" />
 
+
+            <TextView
+                android:id="@+id/textViewActivityParticipations"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:hint="Atividades Participadas:"
+                android:textColorHint="@color/white"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewName"
+                app:layout_constraintWidth_percent=".8" />
+
+            <TextView
+                android:id="@+id/textViewShowParticipations"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:textColorHint="@color/white"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/text_input_edit_text_style"
+                app:layout_constraintTop_toBottomOf="@+id/textViewName"
+                app:layout_constraintStart_toEndOf="@+id/textViewActivityParticipations"
+                app:layout_constraintWidth_percent=".8" />
+
+            <TextView
+                android:id="@+id/textViewTypeParticipations"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:hint="Tipo de atividade mais participada:"
+                android:textColorHint="@color/white"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewActivityParticipations"
+                app:layout_constraintWidth_percent=".8" />
+
+            <TextView
+                android:id="@+id/textViewTypeShowParticipations"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:textColorHint="@color/white"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="26dp"
+                android:background="@drawable/text_input_edit_text_style"
+                app:layout_constraintTop_toBottomOf="@+id/textViewShowParticipations"
+                app:layout_constraintStart_toEndOf="@+id/textViewActivityParticipations"
+                app:layout_constraintWidth_percent=".8" />
+
             <FrameLayout
-                android:id="@+id/frameLayout"
+                android:id="@+id/AframeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -69,7 +143,7 @@
                 android:background="@drawable/edit_text_style"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewName">
+                app:layout_constraintTop_toBottomOf="@+id/textViewTypeShowParticipations">
 
                 <ListView
                     android:id="@+id/ListViewProfile"

@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.universe.intelliscout.Activities.GetAllActivities
+import com.universe.intelliscout.Equipment.AddEquipmentActivity
+import com.universe.intelliscout.Equipment.ListEquipmentActivity
 import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileActivity
 import com.universe.intelliscout.Profile.ProfileGetAllActivity
@@ -180,9 +182,9 @@ class HomeActivity : AppCompatActivity() {
                         R.id.nav_manage_equipment -> {
 
                             /*
-                    val intent = Intent(this, EditProfileActivity::class.java)
-                    startActivity(intent)
-                     */
+                                val intent = Intent(this, EditProfileActivity::class.java)
+                                startActivity(intent)
+                             */
 
 
                         }
