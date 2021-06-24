@@ -8,9 +8,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import com.universe.intelliscout.Activities.GetAllActivities
+import com.universe.intelliscout.Authentic.LoginRequest
 import com.universe.intelliscout.Equipment.AddEquipmentActivity
 import com.universe.intelliscout.Equipment.ListEquipmentActivity
+import com.universe.intelliscout.Models.Login
+import com.universe.intelliscout.Activities.GetAllActivities
 import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileActivity
 import com.universe.intelliscout.Profile.ProfileGetAllActivity
@@ -24,8 +26,11 @@ class HomeActivity : AppCompatActivity() {
 
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var user: ScoutUser
+
+    lateinit var loginUser: Login
     lateinit var newUser: ScoutUser
     private var idScout: Int? = null
+
     private var gmail: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,21 +53,25 @@ class HomeActivity : AppCompatActivity() {
             gmail = it.getString("gmail")
         }
 
-        println("idScout = $idScout")
 
         GlobalScope.launch(Dispatchers.IO) {
 
             user = ProfileRequest.getScoutUser(idScout!!)
 
+
+            if(gmail != null)
+                loginUser = LoginRequest.getLoginByGmail(gmail!!)
+                
             GlobalScope.launch(Dispatchers.Main) {
 
                 if (user.active == 0) {
 
-                    val intent = Intent(this@HomeActivity, EditProfileActivity::class.java)
-                    intent.putExtra("idScout", idScout)
-                    startActivity(intent)
+            GlobalScope.launch(Dispatchers.Main) {
 
-                }
+                if(loginUser.role == 3)
+                    navView.inflateMenu(R.menu.menu_scout)
+                else
+                    navView.inflateMenu(R.menu.menu_main)
 
                 textViewName.text = user.name
                 textViewUserName.text = user.name
@@ -79,6 +88,12 @@ class HomeActivity : AppCompatActivity() {
 
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+                supportActionBar?.setTitle("Página Principal")
+
+
+                //supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
+                //supportActionBar?.setCustomView(R.layout.abs_layout)
+
                 navView.setNavigationItemSelectedListener {
 
                     when (it.itemId) {
@@ -89,7 +104,6 @@ class HomeActivity : AppCompatActivity() {
                             intent.putExtra("idScout", idScout)
                             intent.putExtra("gmail", gmail)
                             startActivity(intent)
-
 
                         }
 

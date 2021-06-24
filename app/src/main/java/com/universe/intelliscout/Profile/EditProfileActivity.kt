@@ -1,11 +1,13 @@
 package com.universe.intelliscout.Profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.universe.intelliscout.Authentic.LoginRequest
+import com.universe.intelliscout.HomeActivity
 import com.universe.intelliscout.Models.Login
 import com.universe.intelliscout.R
 import com.universe.intelliscout.Utils.GlobalRequests
@@ -24,10 +26,12 @@ class EditProfileActivity : AppCompatActivity() {
 
         //Variables
 
-        var idScout: Int? = null
+        var idScout : Int? = null
+        var gmail: String? = null
         var birthString: String? = null
         var gender: Int? = null
         var idLocal: Int? = null
+        var newUserBool = false
         val listDistricts: MutableList<String> = ArrayList()
         val loginList: MutableList<Login> = ArrayList()
 
@@ -35,6 +39,11 @@ class EditProfileActivity : AppCompatActivity() {
         val textViewEditImage = findViewById<TextView>(R.id.textViewEditImage)
         val textInputEditTextName = findViewById<TextInputEditText>(R.id.textInputEditTextName)
         val textInputEditTextNIN = findViewById<TextInputEditText>(R.id.textInputEditTextNIN)
+        val textInputEditTextContact = findViewById<TextInputEditText>(R.id.textInputEditTextContact)
+        val textInputEditTextContactEE = findViewById<TextInputEditText>(R.id.textInputEditTextContactEE)
+        val textInputEditTextAddress = findViewById<TextInputEditText>(R.id.textInputEditTextAddress)
+        val textInputEditTextDistrict = findViewById<TextInputEditText>(R.id.textInputEditTextDistrict)
+
         val textInputEditTextContact =
             findViewById<TextInputEditText>(R.id.textInputEditTextContact)
         val textInputEditTextContactEE =
@@ -44,6 +53,7 @@ class EditProfileActivity : AppCompatActivity() {
         val textInputEditTextTeam = findViewById<TextInputEditText>(R.id.textInputEditTextTeam)
         val textInputEditTextDistrict =
             findViewById<TextInputEditText>(R.id.textInputEditTextDistrict)
+            
         val datePicker: DatePicker = findViewById(R.id.datePicker)
         val radioButtonMasculine: RadioButton = findViewById(R.id.radioButtonMasculine)
         val radioButtonFeminine: RadioButton = findViewById(R.id.radioButtonFeminine)
@@ -55,6 +65,7 @@ class EditProfileActivity : AppCompatActivity() {
         bundle?.let {
 
             idScout = it.getInt("idScout")
+            gmail = it.getString("gmail")
 
         }
 
@@ -62,6 +73,9 @@ class EditProfileActivity : AppCompatActivity() {
             val user = ProfileRequest.getScoutUser(idScout!!)
 
             GlobalScope.launch(Dispatchers.Main) {
+
+                if(user.active == 0)
+                    newUserBool = true
 
                 idLocal = user.idLocal
 
@@ -199,8 +213,25 @@ class EditProfileActivity : AppCompatActivity() {
                     ProfileRequest.editScoutUser(newUser)
                 }
 
+
+                    if(newUserBool){
+
+                        val intent = Intent(this@EditProfileActivity, HomeActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        intent.putExtra("gmail", gmail)
+                        intent.putExtra("idScout", newUser.id)
+                        startActivity(intent)
+
+                    } else{
+
+                        Toast.makeText(this, "Perfil editado com sucesso!", Toast.LENGTH_SHORT).show()
+                        finish()
+
+                    }
+
                 Toast.makeText(this, "Perfil editado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
+
 
             }
         }

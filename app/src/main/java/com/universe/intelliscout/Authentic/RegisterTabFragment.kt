@@ -13,6 +13,7 @@ import com.google.android.gms.common.SignInButton
 import com.universe.intelliscout.Authentic.LoginRequest
 import com.universe.intelliscout.HomeActivity
 import com.universe.intelliscout.Models.Login
+import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileRequest
 import com.universe.intelliscout.R
 import ipca.example.projetosemestre.Models.ScoutUser
@@ -129,7 +130,7 @@ class RegisterTabFragment : Fragment() {
 
                                 println(newUser.id)
 
-                                val intent = Intent(context, HomeActivity::class.java)
+                                val intent = Intent(context, EditProfileActivity::class.java)
                                 intent.putExtra("gmail", register.gmail)
                                 intent.putExtra("idScout", newUser.id)
                                 startActivity(intent)

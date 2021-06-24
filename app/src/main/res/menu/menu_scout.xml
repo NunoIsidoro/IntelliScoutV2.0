@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Perfis">
+            <menu>
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/user"
+                    android:title="Página De Perfil"/>
+                <item
+                    android:id="@+id/nav_edit_profile"
+                    android:icon="@drawable/user_editar"
+                    android:title="Editar Perfil"/>
+
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/logout"
+                    android:title="@string/menu_logout"/>
+            </menu>
+
+        </item>
+    </group>
+
+
+    <group android:checkableBehavior="single">
+        <item android:title="Atividades">
+            <menu>
+                <item
+                    android:id="@+id/nav_calendar"
+                    android:icon="@drawable/calendar2"
+                    android:title="@string/menu_calendario"/>
+
+            </menu>
+        </item>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:title="Manual de Instruções">
+            <menu>
+                <item
+                    android:id="@+id/nav_manual"
+                    android:icon="@drawable/manual"
+                    android:title="@string/menu_manual" />
+            </menu>
+        </item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="Equipamentos">
+            <menu>
+                <item
+                    android:id="@+id/nav_add_equipment"
+                    android:icon="@drawable/equipamentos"
+                    android:title="@string/menu_equipamentos" />
+            </menu>
+        </item>
+    </group>
+
+</menu>
