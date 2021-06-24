@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.universe.intelliscout.Activities.GetAllActivities
+import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileActivity
 import com.universe.intelliscout.Profile.ProfileGetAllActivity
 import com.universe.intelliscout.Profile.ProfileRequest
@@ -44,8 +45,8 @@ class HomeActivity : AppCompatActivity() {
             idScout = it.getInt("idScout")
             gmail = it.getString("gmail")
         }
+
         println("idScout = $idScout")
-        println(" = $gmail")
 
         GlobalScope.launch(Dispatchers.IO) {
 
@@ -53,13 +54,17 @@ class HomeActivity : AppCompatActivity() {
 
             GlobalScope.launch(Dispatchers.Main) {
 
+                if(user.active == 0){
+
+                    val intent = Intent(this@HomeActivity, EditProfileActivity::class.java)
+                    intent.putExtra("idScout", idScout)
+                    startActivity(intent)
+
+                }
+
                 textViewName.text = user.name
                 textViewUserName.text = user.name
                 textViewUserEmail.text = gmail
-
-
-                println("textViewName.text = ${textViewName.text}")
-
 
                 toggle = ActionBarDrawerToggle(
                     this@HomeActivity,
@@ -88,13 +93,9 @@ class HomeActivity : AppCompatActivity() {
 
                         R.id.nav_edit_profile -> {
 
-                            /*
-                    val intent = Intent(this, EditProfileActivity::class.java)
-                    intent.putExtra("idScout", idScout)
-                    intent.putExtra("gmail", gmail)
-                    startActivity(intent)
-
-                     */
+                        val intent = Intent(this@HomeActivity, EditProfileActivity::class.java)
+                        intent.putExtra("idScout", idScout)
+                        startActivity(intent)
 
                         }
 
@@ -159,20 +160,20 @@ class HomeActivity : AppCompatActivity() {
 
                         R.id.nav_add_equipment -> {
 
-                            /*
-                    val intent = Intent(this, AddEquipmentActivity::class.java)
-                    startActivity(intent)
-                     */
+
+                            val intent = Intent(this@HomeActivity, AddEquipmentActivity::class.java)
+                            startActivity(intent)
+
 
 
                         }
 
                         R.id.nav_edit_equipment -> {
 
-                            /*
-                    val intent = Intent(this, ListEquipmentActivity::class.java)
-                    startActivity(intent)
-                     */
+
+                            val intent = Intent(this@HomeActivity, ListEquipmentActivity::class.java)
+                            startActivity(intent)
+
 
                         }
 

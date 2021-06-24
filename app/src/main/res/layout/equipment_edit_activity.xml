@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Equipment.EditEquipmentActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="10dp"
+            android:text="Nome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/edit_text_style"
+            android:hint="Nome Do Equipamento"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:text="Descrição"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.842"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextName" />
+
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/edit_text_style"
+            android:hint="Descreva o equipamento.."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+
+
+
+        <TextView
+            android:id="@+id/textViewQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:text="Quantidade"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextDescription" />
+
+
+        <Button
+            android:id="@+id/buttonSubtract"
+            android:layout_width="50dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/blue"
+            android:text="-"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintRight_toLeftOf="@+id/buttonPlus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewQuantity" />
+
+        <Button
+            android:id="@+id/buttonPlus"
+            android:layout_width="50dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="+"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintLeft_toRightOf="@id/editTextQuantityEquipment"
+            app:layout_constraintTop_toBottomOf="@+id/textViewQuantity" />
+
+
+        <EditText
+            android:id="@+id/editTextQuantityEquipment"
+            android:layout_width="40dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:background="@drawable/edit_text_style"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintHorizontal_bias="0.734"
+            app:layout_constraintLeft_toRightOf="@+id/buttonPlus"
+            app:layout_constraintRight_toLeftOf="@id/buttonSubtract"
+            app:layout_constraintTop_toBottomOf="@+id/textViewQuantity" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonPlus">
+
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                android:text="Apagar"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green"
+                android:text="Guardar"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

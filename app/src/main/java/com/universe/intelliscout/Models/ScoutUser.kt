@@ -56,7 +56,7 @@ class ScoutUser {
         jsonObject.put("url_img", urlImg)
         jsonObject.put("scout_login", idScoutLogin)
         jsonObject.put("scout_team", idScoutTeam)
-        jsonObject.put("local", idLocal)
+        jsonObject.put("id_local", idLocal)
 
         return  jsonObject
     }
