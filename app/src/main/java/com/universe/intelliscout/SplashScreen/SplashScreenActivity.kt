@@ -1,9 +1,9 @@
 package com.universe.intelliscout.SplashScreen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -19,11 +19,11 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        val imageViewBackground : ImageView = findViewById(R.id.imageViewBackground)
-        val imageViewLogo : ImageView = findViewById(R.id.imageViewLogo)
-        val textViewIntelliScout : TextView = findViewById(R.id.textViewIntelliScout)
-        val animationsplash : LottieAnimationView = findViewById(R.id.animationsplash)
-        val viewPager : ViewPager = findViewById(R.id.viewPager)
+        val imageViewBackground: ImageView = findViewById(R.id.imageViewBackground)
+        val imageViewLogo: ImageView = findViewById(R.id.imageViewLogo)
+        val textViewIntelliScout: TextView = findViewById(R.id.textViewIntelliScout)
+        val animationsplash: LottieAnimationView = findViewById(R.id.animationsplash)
+        val viewPager: ViewPager = findViewById(R.id.viewPager)
 
         imageViewBackground.animate().translationY(-4000F).setDuration(1000).setStartDelay(2500)
         imageViewLogo.animate().translationY(-1000F).setDuration(1000).setStartDelay(2500)
@@ -36,7 +36,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     }
 
-    private class ScreenPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
+    private class ScreenPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
         override fun getCount(): Int {
             return 3
@@ -44,11 +44,11 @@ class SplashScreenActivity : AppCompatActivity() {
 
         override fun getItem(position: Int): Fragment {
 
-            when(position){
-                0-> return OnBoardingFragment1()
-                1-> return OnBoardingFragment2()
-                2-> return OnBoardingFragment3()
-                else-> return OnBoardingFragment1()
+            when (position) {
+                0 -> return OnBoardingFragment1()
+                1 -> return OnBoardingFragment2()
+                2 -> return OnBoardingFragment3()
+                else -> return OnBoardingFragment1()
             }
         }
 

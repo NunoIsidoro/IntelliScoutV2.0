@@ -1,11 +1,11 @@
 package com.universe.intelliscout.Profile
 
-import ipca.example.projetosemestre.Models.*
-
+import ipca.example.projetosemestre.Models.ScoutUser
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -109,23 +109,22 @@ object ProfileRequest {
 
     fun addScoutUser(scoutUser: ScoutUser) {
 
-        val requestBody = RequestBody.create(
-                "application/json".toMediaTypeOrNull(),
-                scoutUser.toJson().toString()
-        )
+        val requestBody = scoutUser.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
 
         println("addScoutUser, scoutUSer = ${scoutUser.toJson().toString()}")
 
         val request = Request.Builder()
-                .url(url)
-                .post(requestBody)
-                .build()
+            .url(url)
+            .post(requestBody)
+            .build()
 
         OkHttpClient().newCall(request).execute().use {}
 
     }
 
     fun editScoutUser(scoutUser: ScoutUser) {
+
 
         val requestBody = RequestBody.create(
                 "application/json".toMediaTypeOrNull(),
@@ -134,9 +133,9 @@ object ProfileRequest {
         println(scoutUser.toJson().toString())
 
         val request = Request.Builder()
-                .url(url + "${scoutUser.id}")
-                .put(requestBody)
-                .build()
+            .url(url + "${scoutUser.id}")
+            .put(requestBody)
+            .build()
 
         OkHttpClient().newCall(request).execute().use {}
 
@@ -145,9 +144,9 @@ object ProfileRequest {
     fun removeScoutUser(idScoutUser: Int) {
 
         val request = Request.Builder()
-                .url(url + "$idScoutUser")
-                .delete()
-                .build()
+            .url(url + "$idScoutUser")
+            .delete()
+            .build()
 
         OkHttpClient().newCall(request).execute().use { }
 
