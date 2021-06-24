@@ -5,6 +5,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -57,12 +58,10 @@ object EquipmentRequest {
     }
 
 
-    fun addEquipment(equipment: Equipment) : Boolean{
+    fun addEquipment(equipment: Equipment): Boolean {
 
-        val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            equipment.toJson().toString()
-        )
+        val requestBody = equipment.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(url)
@@ -80,12 +79,10 @@ object EquipmentRequest {
 
     }
 
-    fun editEquipment(equipment: Equipment) : Boolean{
+    fun editEquipment(equipment: Equipment): Boolean {
 
-        val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            equipment.toJson().toString()
-        )
+        val requestBody = equipment.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
 
         println(equipment.toJson())
 
@@ -96,7 +93,7 @@ object EquipmentRequest {
 
         OkHttpClient().newCall(request).execute().use {
 
-            if(it.message == "OK")
+            if (it.message == "OK")
                 return true
 
         }

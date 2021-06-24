@@ -4,16 +4,14 @@ import org.json.JSONObject
 
 class Instruction {
 
-    var id : Int? = null
-    var title : String? = null
-    var descri : String? = null
-    var img : String? = null
+    var id: Int? = null
+    var title: String? = null
+    var descri: String? = null
+    var img: String? = null
 
-    constructor(){
+    constructor()
 
-    }
-
-    constructor(id: Int?, title: String?, descri: String?, img: String?){
+    constructor(id: Int?, title: String?, descri: String?, img: String?) {
 
         this.id = id
         this.title = title
@@ -22,18 +20,18 @@ class Instruction {
 
     }
 
-    fun toJson () : JSONObject {
+    fun toJson(): JSONObject {
         val jsonObject = JSONObject()
         jsonObject.put("id", id)
         jsonObject.put("title", title)
         jsonObject.put("descri", descri)
         jsonObject.put("img", img)
-        return  jsonObject
+        return jsonObject
     }
 
     companion object {
 
-        fun fromJson(jsonArticle: JSONObject) : Instruction {
+        fun fromJson(jsonArticle: JSONObject): Instruction {
             val instruction = Instruction()
 
             instruction.id = jsonArticle.getInt("id_instruction")

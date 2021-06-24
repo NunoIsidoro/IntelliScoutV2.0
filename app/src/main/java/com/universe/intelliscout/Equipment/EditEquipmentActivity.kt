@@ -1,10 +1,10 @@
 package com.universe.intelliscout.Equipment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.universe.intelliscout.Models.Equipment
 import com.universe.intelliscout.R
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +31,7 @@ class EditEquipmentActivity : AppCompatActivity() {
         val buttonDelete = findViewById<Button>(R.id.buttonDelete)
 
         val bundle = intent.extras
-        bundle?.let{
+        bundle?.let {
             id = it.getInt("id")
             name = it.getString("name")
             quantity = it.getInt("quantity")
@@ -65,7 +65,7 @@ class EditEquipmentActivity : AppCompatActivity() {
 
         buttonDelete.setOnClickListener {
 
-            GlobalScope.launch(Dispatchers.IO){
+            GlobalScope.launch(Dispatchers.IO) {
                 EquipmentRequest.removeEquipment(id!!)
             }
 
@@ -76,23 +76,32 @@ class EditEquipmentActivity : AppCompatActivity() {
 
         buttonSave.setOnClickListener {
 
-            val equipment = Equipment(id, editTextName.text.toString(), editTextQuantity.text.toString().toInt(), editTextDescription.text.toString(), "")
+            val equipment = Equipment(
+                id,
+                editTextName.text.toString(),
+                editTextQuantity.text.toString().toInt(),
+                editTextDescription.text.toString(),
+                ""
+            )
             var resultRequest = true
 
             println("equipment = ${equipment.name}")
 
-            GlobalScope.launch(Dispatchers.IO){
+            GlobalScope.launch(Dispatchers.IO) {
 
                 resultRequest = EquipmentRequest.editEquipment(equipment)
 
             }
 
-            if(resultRequest) {
+            if (resultRequest) {
                 Toast.makeText(this, "Equipamento alterado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
-            }
-            else
-                Toast.makeText(this, "Problema no envio, por favor tente novamente!", Toast.LENGTH_SHORT).show()
+            } else
+                Toast.makeText(
+                    this,
+                    "Problema no envio, por favor tente novamente!",
+                    Toast.LENGTH_SHORT
+                ).show()
 
 
         }

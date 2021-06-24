@@ -14,10 +14,7 @@
                     android:id="@+id/nav_edit_profile"
                     android:icon="@drawable/user_editar"
                     android:title="Editar Perfil"/>
-                <item
-                    android:id="@+id/nav_manage_profile"
-                    android:icon="@drawable/user_gerir"
-                    android:title="Gerir Perfis"/>
+
                 <item
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/logout"
@@ -35,14 +32,6 @@
                     android:id="@+id/nav_calendar"
                     android:icon="@drawable/calendar2"
                     android:title="@string/menu_calendario"/>
-                <item
-                    android:id="@+id/nav_edit_activities"
-                    android:icon="@drawable/atividade_editar"
-                    android:title="@string/menu_editar_atividades" />
-                <item
-                    android:id="@+id/nav_manage_activities"
-                    android:icon="@drawable/atividade_gerir"
-                    android:title="@string/menu_gerir_atividades" />
 
             </menu>
         </item>
@@ -55,14 +44,6 @@
                     android:id="@+id/nav_manual"
                     android:icon="@drawable/manual"
                     android:title="@string/menu_manual" />
-                <item
-                    android:id="@+id/nav_edit_instructions"
-                    android:icon="@drawable/manual_editar"
-                    android:title="@string/menu_editar_instrucoes" />
-                <item
-                    android:id="@+id/nav_add_instructions"
-                    android:icon="@drawable/manual_gerir"
-                    android:title="@string/menu_adicionar_instrucoes" />
             </menu>
         </item>
     </group>
@@ -70,17 +51,9 @@
         <item android:title="Equipamentos">
             <menu>
                 <item
-                    android:id="@+id/nav_add_equipment"
+                    android:id="@+id/nav_manage_equipment"
                     android:icon="@drawable/equipamentos"
                     android:title="@string/menu_equipamentos" />
-                <item
-                    android:id="@+id/nav_edit_equipment"
-                    android:icon="@drawable/equipamentos_editar"
-                    android:title="@string/menu_editar_equipamentos" />
-                <item
-                    android:id="@+id/nav_manage_equipment"
-                    android:icon="@drawable/equipamentos_gerir"
-                    android:title="@string/menu_gerir_equipamentos" />
             </menu>
         </item>
     </group>

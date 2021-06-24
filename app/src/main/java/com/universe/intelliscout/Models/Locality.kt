@@ -4,15 +4,13 @@ import org.json.JSONObject
 
 class Locality {
 
-    var id : Int? = null
-    var district : String? = null
-    var abbr : String? = null
+    var id: Int? = null
+    var district: String? = null
+    var abbr: String? = null
 
-    constructor(){
+    constructor()
 
-    }
-
-    constructor(id: Int?, district: String?, abbr: String?){
+    constructor(id: Int?, district: String?, abbr: String?) {
 
         this.id = id
         this.district = district
@@ -20,17 +18,17 @@ class Locality {
 
     }
 
-    fun toJson () : JSONObject {
+    fun toJson(): JSONObject {
         val jsonObject = JSONObject()
         jsonObject.put("id", id)
         jsonObject.put("district", district)
         jsonObject.put("abbr", abbr)
-        return  jsonObject
+        return jsonObject
     }
 
     companion object {
 
-        fun fromJson(jsonArticle: JSONObject) : Locality {
+        fun fromJson(jsonArticle: JSONObject): Locality {
             val zipCode = Locality()
 
             zipCode.id = jsonArticle.getInt("id_local")

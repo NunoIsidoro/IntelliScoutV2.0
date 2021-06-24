@@ -1,15 +1,15 @@
 package com.universe.intelliscout.Authentic
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.universe.intelliscout.R
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var tabLayout : TabLayout
-    lateinit var viewPager : ViewPager
+    lateinit var tabLayout: TabLayout
+    lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +38,11 @@ class LoginActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewPager.currentItem = tab.position
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab) {
 
             }
+
             override fun onTabReselected(tab: TabLayout.Tab) {
 
             }
