@@ -8,24 +8,26 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.IntelliScout">
-
-        <activity android:name=".Profile.ProfileGetAllActivity"></activity>
-        <activity android:name=".Profile.ProfileActivity"></activity>
+        android:theme="@style/Theme.IntelliScout"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Equipment.EditEquipmentActivity"/>
+        <activity android:name=".Equipment.ListEquipmentActivity" />
+        <activity android:name=".Equipment.AddEquipmentActivity" />
+        <activity android:name=".Profile.ProfileGetAllActivity" />
+        <activity android:name=".Profile.ProfileActivity" />
         <activity android:name=".Profile.EditProfileActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".Authentic.LoginActivity" />
-        
         <activity
             android:name=".SplashScreen.SplashScreenActivity"
             android:label="IntelliScout"
             android:theme="@style/Theme.Design.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
