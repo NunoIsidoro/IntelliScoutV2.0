@@ -70,7 +70,7 @@
         <item android:title="Equipamentos">
             <menu>
                 <item
-                    android:id="@+id/nav_add_equipment"
+                    android:id="@+id/nav_manage_equipment"
                     android:icon="@drawable/equipamentos"
                     android:title="@string/menu_equipamentos" />
                 <item
@@ -78,7 +78,7 @@
                     android:icon="@drawable/equipamentos_editar"
                     android:title="@string/menu_editar_equipamentos" />
                 <item
-                    android:id="@+id/nav_manage_equipment"
+                    android:id="@+id/nav_add_equipment"
                     android:icon="@drawable/equipamentos_gerir"
                     android:title="@string/menu_gerir_equipamentos" />
             </menu>

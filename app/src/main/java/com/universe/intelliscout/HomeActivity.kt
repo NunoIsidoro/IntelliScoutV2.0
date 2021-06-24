@@ -28,7 +28,6 @@ class HomeActivity : AppCompatActivity() {
     lateinit var user: ScoutUser
 
     lateinit var loginUser: Login
-    lateinit var newUser: ScoutUser
     private var idScout: Int? = null
 
     private var gmail: String? = null
@@ -61,10 +60,7 @@ class HomeActivity : AppCompatActivity() {
 
             if(gmail != null)
                 loginUser = LoginRequest.getLoginByGmail(gmail!!)
-                
-            GlobalScope.launch(Dispatchers.Main) {
 
-                if (user.active == 0) {
 
             GlobalScope.launch(Dispatchers.Main) {
 

@@ -43,16 +43,6 @@ class EditProfileActivity : AppCompatActivity() {
         val textInputEditTextContactEE = findViewById<TextInputEditText>(R.id.textInputEditTextContactEE)
         val textInputEditTextAddress = findViewById<TextInputEditText>(R.id.textInputEditTextAddress)
         val textInputEditTextDistrict = findViewById<TextInputEditText>(R.id.textInputEditTextDistrict)
-
-        val textInputEditTextContact =
-            findViewById<TextInputEditText>(R.id.textInputEditTextContact)
-        val textInputEditTextContactEE =
-            findViewById<TextInputEditText>(R.id.textInputEditTextContactEE)
-        val textInputEditTextAddress =
-            findViewById<TextInputEditText>(R.id.textInputEditTextAddress)
-        val textInputEditTextTeam = findViewById<TextInputEditText>(R.id.textInputEditTextTeam)
-        val textInputEditTextDistrict =
-            findViewById<TextInputEditText>(R.id.textInputEditTextDistrict)
             
         val datePicker: DatePicker = findViewById(R.id.datePicker)
         val radioButtonMasculine: RadioButton = findViewById(R.id.radioButtonMasculine)
