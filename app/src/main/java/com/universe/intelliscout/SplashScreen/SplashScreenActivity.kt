@@ -28,7 +28,7 @@ class SplashScreenActivity : AppCompatActivity() {
         imageViewBackground.animate().translationY(-4000F).setDuration(1000).setStartDelay(2500)
         imageViewLogo.animate().translationY(-1000F).setDuration(1000).setStartDelay(2500)
         textViewIntelliScout.animate().translationY(2000F).setDuration(1000).setStartDelay(2500)
-        animationsplash.animate().translationX(800F).setDuration(2500)
+        animationsplash.animate().translationX(2000F).setDuration(5500)
         //animationsplash.loop(false)
 
         val adapter = ScreenPagerAdapter(supportFragmentManager)

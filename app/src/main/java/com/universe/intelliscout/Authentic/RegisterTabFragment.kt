@@ -81,7 +81,7 @@ class RegisterTabFragment : Fragment() {
                 var stopRequest = false
                 val loginList : MutableList<Login> = ArrayList()
                 GlobalScope.launch(Dispatchers.IO) {
-                    LoginRequest.getAllLogin() {
+                    LoginRequest.getAllLogin {
                         loginList.addAll(it)
                     }
 
@@ -103,10 +103,17 @@ class RegisterTabFragment : Fragment() {
 
                         val registerResult = LoginRequest.registerRequest(register)
 
+                        val accountRegister = LoginRequest.getLoginByGmail(register.gmail!!)
+
+                        println("registerResult = $registerResult")
+                        println("accountRegister.toJson() = ${accountRegister.toJson()}")
+
                         if (registerResult) {
 
-                            val newUser = ScoutUser(register.id, "Utilizador", null, null, null, null, 0, null, null, null
-                            ,register.id, 1, 1)
+
+                            val newUser = ScoutUser(accountRegister.id, "null", "2010-09-10", 0,
+                                    "null", "null", 0, "null", "null", "null"
+                            ,accountRegister.id, 1, 1)
 
                             ProfileRequest.addScoutUser(newUser)
 
@@ -114,9 +121,11 @@ class RegisterTabFragment : Fragment() {
 
                                 Toast.makeText(context, "Registado com sucesso!", Toast.LENGTH_SHORT).show()
 
+                                println(newUser.id)
+
                                 val intent = Intent(context, HomeActivity::class.java)
-                                intent.putExtra("idScout", register.id)
                                 intent.putExtra("gmail", register.gmail)
+                                intent.putExtra("idScout", newUser.id)
                                 startActivity(intent)
 
                             }
