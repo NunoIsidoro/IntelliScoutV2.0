@@ -8,15 +8,16 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
+import java.net.URLEncoder
 
 object InstructionCatalogRequest {
 
-    const val url = "http://intelliscout.ml:60000/instructioncatalog/"
+    const val URL = "http://intelliscout.ml:60000/instructioncatalog/"
 
     fun getAllInstCatalog(callBack: (List<InstructionCatalog>) -> Unit) {
 
         val instCatalogs: MutableList<InstructionCatalog> = arrayListOf()
-        val request = Request.Builder().url(url).get().build()
+        val request = Request.Builder().url(URL).get().build()
 
         OkHttpClient().newCall(request).execute().use { response ->
 
@@ -26,6 +27,7 @@ object InstructionCatalogRequest {
             for (index in 0 until instCatalogJsonArray.length()) {
                 val jsonArticle = instCatalogJsonArray.get(index) as JSONObject
                 val instructionCatalog = InstructionCatalog.fromJson(jsonArticle)
+                println(instructionCatalog)
                 instCatalogs.add(instructionCatalog)
             }
 
@@ -40,7 +42,7 @@ object InstructionCatalogRequest {
 
         // declerate variables
         var instCatalog: InstructionCatalog? = null
-        val request = Request.Builder().url(url + "$id").build()
+        val request = Request.Builder().url(URL + "$id").build()
 
         // make a request to api, and transform the answer (string) into (json)
         OkHttpClient().newCall(request).execute().use { response ->
@@ -64,7 +66,7 @@ object InstructionCatalogRequest {
             .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
-            .url(url)
+            .url(URL)
             .post(requestBody)
             .build()
 
@@ -78,7 +80,7 @@ object InstructionCatalogRequest {
             .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
-            .url(url + "${instCatalog.id}")
+            .url(URL + "${instCatalog.id}")
             .put(requestBody)
             .build()
 
@@ -89,7 +91,7 @@ object InstructionCatalogRequest {
     fun removeInstCatalog(idInstruction: Int) {
 
         val request = Request.Builder()
-            .url(url + "$idInstruction")
+            .url(URL + "$idInstruction")
             .delete()
             .build()
 

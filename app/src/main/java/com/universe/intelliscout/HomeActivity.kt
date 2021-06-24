@@ -14,6 +14,7 @@ import com.universe.intelliscout.Equipment.ListEditEquipmentActivity
 import com.universe.intelliscout.Equipment.ListEquipmentActivity
 import com.universe.intelliscout.Models.Login
 import com.universe.intelliscout.Activities.GetAllActivities
+import com.universe.intelliscout.InstructionCatalog.ListInstruction
 import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileActivity
 import com.universe.intelliscout.Profile.ProfileGetAllActivity
@@ -148,11 +149,8 @@ class HomeActivity : AppCompatActivity() {
 
                         R.id.nav_manual -> {
 
-                            /*
-                    val intent = Intent(this, ListReadInstructionsActivity::class.java)
-                    startActivity(intent)
-
-                     */
+                            val intent = Intent(this@HomeActivity, ListInstruction::class.java)
+                            startActivity(intent)
 
                         }
 
@@ -164,10 +162,10 @@ class HomeActivity : AppCompatActivity() {
                         R.id.nav_add_instructions -> {
 
                             /*
-                    val intent = Intent(this, AddInstructionActivity::class.java)
-                    startActivity(intent)
+                            val intent = Intent(this, AddInstructionActivity::class.java)
+                            startActivity(intent)
 
-                     */
+                        */
 
                         }
 
