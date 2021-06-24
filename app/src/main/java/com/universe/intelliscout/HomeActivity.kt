@@ -168,20 +168,20 @@ class HomeActivity : AppCompatActivity() {
 
                         R.id.nav_add_equipment -> {
 
-                            /*
-                    val intent = Intent(this, AddEquipmentActivity::class.java)
-                    startActivity(intent)
-                     */
+
+                            val intent = Intent(this@HomeActivity, AddEquipmentActivity::class.java)
+                            startActivity(intent)
+
 
 
                         }
 
                         R.id.nav_edit_equipment -> {
 
-                            /*
-                    val intent = Intent(this, ListEquipmentActivity::class.java)
-                    startActivity(intent)
-                     */
+
+                            val intent = Intent(this@HomeActivity, ListEquipmentActivity::class.java)
+                            startActivity(intent)
+
 
                         }
 
