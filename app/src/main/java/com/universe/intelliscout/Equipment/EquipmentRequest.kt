@@ -57,7 +57,7 @@ object EquipmentRequest {
     }
 
 
-    fun addEquipment(equipment: Equipment) {
+    fun addEquipment(equipment: Equipment) : Boolean{
 
         val requestBody = RequestBody.create(
             "application/json".toMediaTypeOrNull(),
@@ -69,23 +69,39 @@ object EquipmentRequest {
             .post(requestBody)
             .build()
 
-        OkHttpClient().newCall(request).execute().use {}
+        OkHttpClient().newCall(request).execute().use {
+
+            if (it.message == "OK")
+                return true
+
+        }
+
+        return false
 
     }
 
-    fun editEquipment(equipment: Equipment) {
+    fun editEquipment(equipment: Equipment) : Boolean{
 
         val requestBody = RequestBody.create(
             "application/json".toMediaTypeOrNull(),
             equipment.toJson().toString()
         )
 
+        println(equipment.toJson())
+
         val request = Request.Builder()
-            .url(url + "${equipment.id}")
+            .url(url)
             .put(requestBody)
             .build()
 
-        OkHttpClient().newCall(request).execute().use {}
+        OkHttpClient().newCall(request).execute().use {
+
+            if(it.message == "OK")
+                return true
+
+        }
+
+        return false
 
     }
 

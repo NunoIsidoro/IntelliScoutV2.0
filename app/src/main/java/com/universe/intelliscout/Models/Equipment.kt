@@ -30,7 +30,7 @@ class Equipment {
         jsonObject.put("name", name)
         jsonObject.put("quantity", quantity)
         jsonObject.put("descr", descr)
-        jsonObject.put("imgUrl", imgUrl)
+        jsonObject.put("img_url", imgUrl)
         return  jsonObject
     }
 
