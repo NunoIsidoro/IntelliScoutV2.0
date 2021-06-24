@@ -1,17 +1,13 @@
 package com.universe.intelliscout.Authentic
 
-import android.content.Context
-import android.util.Log
 import com.universe.intelliscout.Models.Login
-import ipca.example.projetosemestre.Models.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
-import java.lang.reflect.Method
-import java.nio.file.Files.delete
 
 object LoginRequest {
 
@@ -19,12 +15,10 @@ object LoginRequest {
     const val LOGIN = "/login"
     const val REGISTER = "/register"
 
-    fun loginRequest (login: Login) : Boolean {
+    fun loginRequest(login: Login): Boolean {
 
-        val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            login.toJson().toString()
-        )
+        val requestBody = login.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
 
         println(login.toJson().toString())
 
@@ -33,11 +27,11 @@ object LoginRequest {
             .post(requestBody)
             .build()
 
-        OkHttpClient().newCall(request).execute().use {response ->
+        OkHttpClient().newCall(request).execute().use { response ->
 
             println("response = ${response.message}")
 
-            if(response.message == "ok")
+            if (response.message == "ok")
                 return true
 
         }
@@ -47,14 +41,12 @@ object LoginRequest {
     }
 
 
-    fun registerRequest (register: Login) : Boolean {
+    fun registerRequest(register: Login): Boolean {
 
         println(register.toJson().toString())
 
-        val requestBody = RequestBody.create(
-            "application/json".toMediaTypeOrNull(),
-            register.toJson().toString()
-        )
+        val requestBody = register.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(BASE_API + REGISTER)
@@ -66,16 +58,16 @@ object LoginRequest {
             println(response)
 
             if (response.message == "OK")
-              return true
+                return true
 
         }
 
         return false
 
     }
-    
 
-    fun getLoginByGmail (gmail: String) : Login{
+
+    fun getLoginByGmail(gmail: String): Login {
 
         var login: Login? = null
 
@@ -84,9 +76,9 @@ object LoginRequest {
             .get()
             .build()
 
-        OkHttpClient().newCall(request).execute().use {response ->
+        OkHttpClient().newCall(request).execute().use { response ->
 
-            val jsonArrayStr : String = response.body!!.string()
+            val jsonArrayStr: String = response.body!!.string()
             val jsonArray = JSONArray(jsonArrayStr)
 
             for (index in 0 until jsonArray.length()) {
@@ -98,21 +90,20 @@ object LoginRequest {
             return login!!
         }
     }
-    
 
 
-    fun getLoginById (id: Int) : Login{
+    fun getLoginById(id: Int): Login {
 
         var login: Login? = null
 
         val request = Request.Builder()
-                .url(BASE_API + "/$id")
-                .get()
-                .build()
+            .url(BASE_API + "/$id")
+            .get()
+            .build()
 
-        OkHttpClient().newCall(request).execute().use {response ->
+        OkHttpClient().newCall(request).execute().use { response ->
 
-            val jsonArrayStr : String = response.body!!.string()
+            val jsonArrayStr: String = response.body!!.string()
             val jsonArray = JSONArray(jsonArrayStr)
 
             for (index in 0 until jsonArray.length()) {
@@ -124,18 +115,17 @@ object LoginRequest {
             return login!!
         }
     }
-    
 
-    
-    fun getAllLogin (callBack: (List<Login>)->Unit) {
 
-        val loginList : MutableList<Login> = arrayListOf()
+    fun getAllLogin(callBack: (List<Login>) -> Unit) {
+
+        val loginList: MutableList<Login> = arrayListOf()
 
         val request = Request.Builder().url(BASE_API).build()
 
         OkHttpClient().newCall(request).execute().use { response ->
 
-            val loginJsonArrayStr : String = response.body!!.string()
+            val loginJsonArrayStr: String = response.body!!.string()
             val loginJsonArray = JSONArray(loginJsonArrayStr)
 
             for (index in 0 until loginJsonArray.length()) {
@@ -151,7 +141,7 @@ object LoginRequest {
     fun removeLogin(id: Int) {
 
         val request = Request.Builder()
-            .url(BASE_API + "/${id.toString()}")
+            .url(BASE_API + "/$id")
             .delete()
             .build()
 

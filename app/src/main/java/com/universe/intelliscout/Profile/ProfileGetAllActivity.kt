@@ -8,21 +8,18 @@ import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.universe.intelliscout.Activities.ActivitiesRequest
 import com.universe.intelliscout.Authentic.LoginRequest
-import com.universe.intelliscout.Models.Activity
 import com.universe.intelliscout.R
 import ipca.example.projetosemestre.Models.ScoutUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 class ProfileGetAllActivity : AppCompatActivity() {
 
 
-    var scoutUsers : MutableList<ScoutUser> = ArrayList()
-    lateinit var scoutUserAdapter : ScoutUserAdapter
+    var scoutUsers: MutableList<ScoutUser> = ArrayList()
+    lateinit var scoutUserAdapter: ScoutUserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +41,7 @@ class ProfileGetAllActivity : AppCompatActivity() {
         }
     }
 
-    inner class ScoutUserAdapter: BaseAdapter() {
+    inner class ScoutUserAdapter : BaseAdapter() {
         override fun getCount(): Int {
 
             //tamanho do array equipamneto
@@ -65,9 +62,9 @@ class ProfileGetAllActivity : AppCompatActivity() {
             val rowView = layoutInflater.inflate(R.layout.profile_row, parent, false)
 
             //declaração das textViews e botões
-            val textViewProfileName  = rowView.findViewById<TextView>(R.id.textViewName)
+            val textViewProfileName = rowView.findViewById<TextView>(R.id.textViewName)
             val textViewProfileEmail = rowView.findViewById<TextView>(R.id.textViewEmail)
-            val idLoguin : Int = scoutUsers[position].idScoutLogin!!
+            val idLoguin: Int = scoutUsers[position].idScoutLogin!!
 
             GlobalScope.launch(Dispatchers.IO) {
                 var login = LoginRequest.getLoginById(idLoguin)
@@ -95,7 +92,7 @@ class ProfileGetAllActivity : AppCompatActivity() {
 
     // function used to open the editEquipmentActivity
     private fun openEditScoutUser(id: Int) {
-        val intent = Intent(this, ProfileGetAllActivity :: class.java)
+        val intent = Intent(this, ProfileGetAllActivity::class.java)
         intent.putExtra("id", id)
         startActivity(intent)
     }

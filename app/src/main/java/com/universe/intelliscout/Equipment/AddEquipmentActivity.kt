@@ -1,11 +1,11 @@
 package com.universe.intelliscout.Equipment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.universe.intelliscout.Models.Equipment
 import com.universe.intelliscout.R
 import kotlinx.coroutines.Dispatchers
@@ -49,25 +49,35 @@ class AddEquipmentActivity : AppCompatActivity() {
 
         buttonSave.setOnClickListener {
 
-            val equipment = Equipment(null, editTextName.text.toString(), editTextQuantityEquipment.text.toString().toInt(), editTextDescription.text.toString(), "")
+            val equipment = Equipment(
+                null,
+                editTextName.text.toString(),
+                editTextQuantityEquipment.text.toString().toInt(),
+                editTextDescription.text.toString(),
+                ""
+            )
 
-            GlobalScope.launch(Dispatchers.IO){
+            GlobalScope.launch(Dispatchers.IO) {
 
                 resultRequest = EquipmentRequest.addEquipment(equipment)
 
             }
 
-            if(resultRequest){
+            if (resultRequest) {
 
-                Toast.makeText(this, "Equipamento adicionado com sucesso!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Equipamento adicionado com sucesso!", Toast.LENGTH_SHORT)
+                    .show()
                 finish()
 
-            }else{
+            } else {
 
-                Toast.makeText(this, "Problema no pedido, por favor tente novamente!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Problema no pedido, por favor tente novamente!",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
-
 
 
         }

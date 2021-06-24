@@ -4,17 +4,15 @@ import org.json.JSONObject
 
 class Equipment {
 
-    var id : Int? = null
-    var name : String? = null
-    var quantity : Int? = null
-    var descr : String? = null
+    var id: Int? = null
+    var name: String? = null
+    var quantity: Int? = null
+    var descr: String? = null
     var imgUrl: String? = null
 
-    constructor(){
+    constructor()
 
-    }
-
-    constructor(id: Int?, name: String?, quantity: Int?, descr: String?, imgUrl: String?){
+    constructor(id: Int?, name: String?, quantity: Int?, descr: String?, imgUrl: String?) {
 
         this.id = id
         this.name = name
@@ -24,19 +22,19 @@ class Equipment {
 
     }
 
-    fun toJson () : JSONObject {
+    fun toJson(): JSONObject {
         val jsonObject = JSONObject()
         jsonObject.put("id", id)
         jsonObject.put("name", name)
         jsonObject.put("quantity", quantity)
         jsonObject.put("descr", descr)
         jsonObject.put("img_url", imgUrl)
-        return  jsonObject
+        return jsonObject
     }
 
     companion object {
 
-        fun fromJson(jsonArticle: JSONObject) : Equipment {
+        fun fromJson(jsonArticle: JSONObject): Equipment {
             val equipment = Equipment()
 
             equipment.id = jsonArticle.getInt("id_equipment")

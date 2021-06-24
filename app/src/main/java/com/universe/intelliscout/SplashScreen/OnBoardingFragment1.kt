@@ -12,10 +12,15 @@ import com.universe.intelliscout.R
 
 class OnBoardingFragment1 : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root : ViewGroup = inflater.inflate(R.layout.fragment_on_boarding1, container, false) as ViewGroup
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val root: ViewGroup =
+            inflater.inflate(R.layout.fragment_on_boarding1, container, false) as ViewGroup
 
-        val textViewSkipBoarding1 : TextView = root.findViewById(R.id.textViewSkipBoarding1)
+        val textViewSkipBoarding1: TextView = root.findViewById(R.id.textViewSkipBoarding1)
 
         textViewSkipBoarding1.setOnClickListener {
             startActivity(Intent(activity, LoginActivity::class.java))

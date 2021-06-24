@@ -1,7 +1,5 @@
 package com.universe.intelliscout.Utils
-import android.widget.DatePicker
-import java.math.BigDecimal
-import java.math.RoundingMode
+
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -9,7 +7,7 @@ import java.util.*
 
 class UtilFunctions {
 
-    fun receiveBirthFromDatabaseToCalendar(date: String) : Calendar {
+    fun receiveBirthFromDatabaseToCalendar(date: String): Calendar {
 
         val replaceDate = date.replace("T00:00:00.000Z", "")
 
@@ -21,13 +19,13 @@ class UtilFunctions {
 
     }
 
-    fun receiveBirthFromDatabaseToString(date: String): String{
+    fun receiveBirthFromDatabaseToString(date: String): String {
 
         return date.replace("T00:00:00.000Z", "")
 
     }
 
-    fun datePickertoDateFormat(day: Int, month: Int, year: Int): Calendar{
+    fun datePickertoDateFormat(day: Int, month: Int, year: Int): Calendar {
 
         val finalDate = "${year}-${month}-${day}"
         val calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"))
@@ -38,7 +36,7 @@ class UtilFunctions {
 
     }
 
-    fun dateToString(day: Int, month: Int, year: Int): String{
+    fun dateToString(day: Int, month: Int, year: Int): String {
 
         val f: NumberFormat = DecimalFormat("00")
 

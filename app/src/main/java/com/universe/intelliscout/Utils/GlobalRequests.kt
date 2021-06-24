@@ -1,8 +1,5 @@
 package com.universe.intelliscout.Utils
 
-import com.universe.intelliscout.Models.Login
-import com.universe.intelliscout.Profile.ProfileRequest
-import ipca.example.projetosemestre.Models.ScoutUser
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
@@ -12,7 +9,7 @@ object GlobalRequests {
 
     const val URL = "http://intelliscout.ml:60000/local"
 
-    fun getAllDistricts(callBack: (List<String>)->Unit){
+    fun getAllDistricts(callBack: (List<String>) -> Unit) {
 
         val locals: MutableList<String> = arrayListOf()
         val request = Request.Builder().url(URL).get().build()

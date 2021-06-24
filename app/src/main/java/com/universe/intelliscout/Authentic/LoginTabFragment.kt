@@ -1,6 +1,5 @@
 package ipca.example.projetosemestre.ui.Login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,13 +19,13 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class LoginTabFragment : Fragment(){
+class LoginTabFragment : Fragment() {
 
-    lateinit var editTextEmail : EditText
-    lateinit var editTextPassword : EditText
-    lateinit var buttonLogin : Button
-    lateinit var textViewForgetPass : TextView
-    lateinit var signIn : SignInButton
+    lateinit var editTextEmail: EditText
+    lateinit var editTextPassword: EditText
+    lateinit var buttonLogin: Button
+    lateinit var textViewForgetPass: TextView
+    lateinit var signIn: SignInButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -62,61 +61,61 @@ class LoginTabFragment : Fragment(){
 
     }
 
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            buttonLogin.setOnClickListener {
+        buttonLogin.setOnClickListener {
 
-                if (editTextEmail.text.isEmpty()) {
+            if (editTextEmail.text.isEmpty()) {
 
-                    editTextEmail.setError("Por favor, preenche este campo!")
+                editTextEmail.error = "Por favor, preenche este campo!"
 
-                } else if (editTextPassword.text.isEmpty()) {
+            } else if (editTextPassword.text.isEmpty()) {
 
-                    editTextPassword.setError("Por favor, preenche este campo!")
+                editTextPassword.error = "Por favor, preenche este campo!"
 
-                } else {
-
-
-                    GlobalScope.launch(Dispatchers.IO) {
-
-                        val resultLogin =
-                            LoginRequest.getLoginByGmail(editTextEmail.text.toString())
+            } else {
 
 
-                        if (resultLogin.password == editTextPassword.text.toString()) {
+                GlobalScope.launch(Dispatchers.IO) {
 
-                            GlobalScope.launch(Dispatchers.Main){
+                    val resultLogin =
+                        LoginRequest.getLoginByGmail(editTextEmail.text.toString())
 
-                                Toast.makeText(context, "Bem-vindo de volta!", Toast.LENGTH_SHORT).show()
 
-                                val intent = Intent(context, HomeActivity::class.java)
-                                intent.putExtra("idScout", resultLogin.id)
-                                intent.putExtra("gmail", editTextEmail.text.toString())
-                                startActivity(intent)
+                    if (resultLogin.password == editTextPassword.text.toString()) {
 
-                            }
+                        GlobalScope.launch(Dispatchers.Main) {
 
-                        }
-                        else {
+                            Toast.makeText(context, "Bem-vindo de volta!", Toast.LENGTH_SHORT)
+                                .show()
 
-                            GlobalScope.launch(Dispatchers.Main) {
-
-                                Toast.makeText(
-                                    context, "Login ou password incorretos!",
-                                    Toast.LENGTH_LONG
-                                ).show()
-
-                            }
+                            val intent = Intent(context, HomeActivity::class.java)
+                            intent.putExtra("idScout", resultLogin.id)
+                            intent.putExtra("gmail", editTextEmail.text.toString())
+                            startActivity(intent)
 
                         }
+
+                    } else {
+
+                        GlobalScope.launch(Dispatchers.Main) {
+
+                            Toast.makeText(
+                                context, "Login ou password incorretos!",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                        }
+
                     }
                 }
             }
         }
+    }
 
 
-    companion object{
+    companion object {
 
         const val RC_SIGN_IN = 123
 

@@ -4,16 +4,14 @@ import org.json.JSONObject
 
 class Login {
 
-    var gmail : String? = null
-    var password : String? = null
-    var role : Int? = null
-    var id : Int? = null
+    var gmail: String? = null
+    var password: String? = null
+    var role: Int? = null
+    var id: Int? = null
 
-    constructor(){
+    constructor()
 
-    }
-
-    constructor(gmail: String?, password: String?, id: Int?, role: Int?){
+    constructor(gmail: String?, password: String?, id: Int?, role: Int?) {
 
         this.role = role
         this.gmail = gmail
@@ -21,18 +19,18 @@ class Login {
         this.id = id
     }
 
-    fun toJson () : JSONObject {
+    fun toJson(): JSONObject {
         val jsonObject = JSONObject()
         jsonObject.put("id", id)
         jsonObject.put("gmail", gmail)
         jsonObject.put("password", password)
         jsonObject.put("role", role)
-        return  jsonObject
+        return jsonObject
     }
 
     companion object {
 
-        fun fromJson(jsonArticle: JSONObject) : Login {
+        fun fromJson(jsonArticle: JSONObject): Login {
             val login = Login()
 
             login.id = jsonArticle.getInt("id_scout_login")
