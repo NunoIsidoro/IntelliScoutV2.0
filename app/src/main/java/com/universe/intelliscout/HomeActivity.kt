@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.universe.intelliscout.Activities.GetAllActivities
+import com.universe.intelliscout.Equipment.AddEquipmentActivity
+import com.universe.intelliscout.Equipment.ListEquipmentActivity
 import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileActivity
 import com.universe.intelliscout.Profile.ProfileGetAllActivity
@@ -54,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
 
             GlobalScope.launch(Dispatchers.Main) {
 
-                if(user.active == 0){
+                if (user.active == 0) {
 
                     val intent = Intent(this@HomeActivity, EditProfileActivity::class.java)
                     intent.putExtra("idScout", idScout)
@@ -93,9 +95,9 @@ class HomeActivity : AppCompatActivity() {
 
                         R.id.nav_edit_profile -> {
 
-                        val intent = Intent(this@HomeActivity, EditProfileActivity::class.java)
-                        intent.putExtra("idScout", idScout)
-                        startActivity(intent)
+                            val intent = Intent(this@HomeActivity, EditProfileActivity::class.java)
+                            intent.putExtra("idScout", idScout)
+                            startActivity(intent)
 
                         }
 
@@ -115,7 +117,7 @@ class HomeActivity : AppCompatActivity() {
                         }
 
 
-                        R.id.nav_calendar ->{
+                        R.id.nav_calendar -> {
                             val intent = Intent(this@HomeActivity, GetAllActivities::class.java)
                             startActivity(intent)
 
@@ -165,13 +167,13 @@ class HomeActivity : AppCompatActivity() {
                             startActivity(intent)
 
 
-
                         }
 
                         R.id.nav_edit_equipment -> {
 
 
-                            val intent = Intent(this@HomeActivity, ListEquipmentActivity::class.java)
+                            val intent =
+                                Intent(this@HomeActivity, ListEquipmentActivity::class.java)
                             startActivity(intent)
 
 

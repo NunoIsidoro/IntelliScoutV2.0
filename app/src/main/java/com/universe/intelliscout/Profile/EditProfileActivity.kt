@@ -1,8 +1,8 @@
 package com.universe.intelliscout.Profile
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.universe.intelliscout.Authentic.LoginRequest
@@ -13,7 +13,6 @@ import com.universe.intelliscout.Utils.UtilFunctions
 import ipca.example.projetosemestre.Models.ScoutUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.NonCancellable.cancel
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
@@ -25,7 +24,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         //Variables
 
-        var idScout : Int? = null
+        var idScout: Int? = null
         var birthString: String? = null
         var gender: Int? = null
         var idLocal: Int? = null
@@ -36,14 +35,18 @@ class EditProfileActivity : AppCompatActivity() {
         val textViewEditImage = findViewById<TextView>(R.id.textViewEditImage)
         val textInputEditTextName = findViewById<TextInputEditText>(R.id.textInputEditTextName)
         val textInputEditTextNIN = findViewById<TextInputEditText>(R.id.textInputEditTextNIN)
-        val textInputEditTextContact = findViewById<TextInputEditText>(R.id.textInputEditTextContact)
-        val textInputEditTextContactEE = findViewById<TextInputEditText>(R.id.textInputEditTextContactEE)
-        val textInputEditTextAddress = findViewById<TextInputEditText>(R.id.textInputEditTextAddress)
+        val textInputEditTextContact =
+            findViewById<TextInputEditText>(R.id.textInputEditTextContact)
+        val textInputEditTextContactEE =
+            findViewById<TextInputEditText>(R.id.textInputEditTextContactEE)
+        val textInputEditTextAddress =
+            findViewById<TextInputEditText>(R.id.textInputEditTextAddress)
         val textInputEditTextTeam = findViewById<TextInputEditText>(R.id.textInputEditTextTeam)
-        val textInputEditTextDistrict = findViewById<TextInputEditText>(R.id.textInputEditTextDistrict)
+        val textInputEditTextDistrict =
+            findViewById<TextInputEditText>(R.id.textInputEditTextDistrict)
         val datePicker: DatePicker = findViewById(R.id.datePicker)
-        val radioButtonMasculine : RadioButton = findViewById(R.id.radioButtonMasculine)
-        val radioButtonFeminine : RadioButton = findViewById(R.id.radioButtonFeminine)
+        val radioButtonMasculine: RadioButton = findViewById(R.id.radioButtonMasculine)
+        val radioButtonFeminine: RadioButton = findViewById(R.id.radioButtonFeminine)
         val buttonCancel = findViewById<ImageButton>(R.id.buttonCancel)
         val buttonSave = findViewById<ImageButton>(R.id.buttonSave)
 
@@ -80,28 +83,29 @@ class EditProfileActivity : AppCompatActivity() {
 
                 if (user.gender == 0) {
                     radioButtonFeminine.isSelected = true
-                }
-                else {
+                } else {
                     radioButtonMasculine.isSelected = true
                 }
 
                 birthString = UtilFunctions().receiveBirthFromDatabaseToString(user.birth!!)
 
                 //Receive the date from the database in Calendar
-                var birth = UtilFunctions().receiveBirthFromDatabaseToCalendar(user.birth.toString())
+                var birth =
+                    UtilFunctions().receiveBirthFromDatabaseToCalendar(user.birth.toString())
 
                 //Validation that set birth to date format editable
                 datePicker.init(
-                        birth.get(Calendar.YEAR), birth.get(Calendar.MONTH),
-                        birth.get(Calendar.DAY_OF_MONTH)
+                    birth.get(Calendar.YEAR), birth.get(Calendar.MONTH),
+                    birth.get(Calendar.DAY_OF_MONTH)
                 ) { view, year, month, day ->
 
                     birth = UtilFunctions().datePickertoDateFormat(day, (month + 1), year)
 
                     birthString = UtilFunctions().dateToString(
-                            birth.get(Calendar.DAY_OF_MONTH),
-                            (birth.get(Calendar.MONTH) + 1),
-                            birth.get(Calendar.YEAR))
+                        birth.get(Calendar.DAY_OF_MONTH),
+                        (birth.get(Calendar.MONTH) + 1),
+                        birth.get(Calendar.YEAR)
+                    )
 
                 }
 
@@ -116,7 +120,7 @@ class EditProfileActivity : AppCompatActivity() {
                 listDistricts.addAll(it)
             }
 
-            GlobalScope.launch(Dispatchers.Main){
+            GlobalScope.launch(Dispatchers.Main) {
 
                 textInputEditTextDistrict.setText(listDistricts[user.idLocal!! - 1])
 
@@ -124,7 +128,7 @@ class EditProfileActivity : AppCompatActivity() {
                 //listDistricts.toTypedArray()
                 val checkedItem = 1
 
-                if(radioButtonMasculine.isSelected)
+                if (radioButtonMasculine.isSelected)
                     gender = 1
                 else
                     gender = 0
@@ -132,53 +136,71 @@ class EditProfileActivity : AppCompatActivity() {
                 textInputEditTextDistrict.setOnClickListener {
 
                     MaterialAlertDialogBuilder(this@EditProfileActivity)
-                            .setTitle(resources.getString(R.string.title))
-                            .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
-                                // Respond to neutral button press
-                            }
-                            .setPositiveButton(resources.getString(R.string.ok)) { dialog, which ->
-                                // Respond to positive button press
-                            }
-                            // Single-choice items (initialized with checked item)
-                            .setSingleChoiceItems(listDistricts.toTypedArray(), checkedItem) { dialog, which ->
-                                // Respond to item chosen
-                                textInputEditTextDistrict.setText(listDistricts[which])
-                                idLocal = which + 1
-                                println(which)
-                            }
-                            .show()
+                        .setTitle(resources.getString(R.string.title))
+                        .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                            // Respond to neutral button press
+                        }
+                        .setPositiveButton(resources.getString(R.string.ok)) { dialog, which ->
+                            // Respond to positive button press
+                        }
+                        // Single-choice items (initialized with checked item)
+                        .setSingleChoiceItems(
+                            listDistricts.toTypedArray(),
+                            checkedItem
+                        ) { dialog, which ->
+                            // Respond to item chosen
+                            textInputEditTextDistrict.setText(listDistricts[which])
+                            idLocal = which + 1
+                            println(which)
+                        }
+                        .show()
 
                 }
             }
         }
 
-            buttonCancel.setOnClickListener { finish() }
+        buttonCancel.setOnClickListener { finish() }
 
-            buttonSave.setOnClickListener {
+        buttonSave.setOnClickListener {
 
-                if (textInputEditTextName.text!!.isEmpty() || textInputEditTextAddress.text!!.isEmpty()
-                        || textInputEditTextContact.text!!.isEmpty() || textInputEditTextNIN.text!!.isEmpty()) {
+            if (textInputEditTextName.text!!.isEmpty() || textInputEditTextAddress.text!!.isEmpty()
+                || textInputEditTextContact.text!!.isEmpty() || textInputEditTextNIN.text!!.isEmpty()
+            ) {
 
-                    Toast.makeText(this, "Por favor preencha todos os campos obrigatórios!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Por favor preencha todos os campos obrigatórios!",
+                    Toast.LENGTH_SHORT
+                ).show()
 
-                } else {
+            } else {
 
-                    println("idLocal = $idLocal")
-
-
-                    val newUser = ScoutUser(idScout, textInputEditTextName.text.toString(),
-                            birthString, gender, textInputEditTextContact.text.toString(),
-                            textInputEditTextAddress.text.toString(), 1,
-                            textInputEditTextNIN.text.toString(), textInputEditTextContactEE.text.toString()
-                            , "null", idScout, 1, idLocal)
+                println("idLocal = $idLocal")
 
 
-                    GlobalScope.launch(Dispatchers.IO) {
-                        ProfileRequest.editScoutUser(newUser)
-                    }
+                val newUser = ScoutUser(
+                    idScout,
+                    textInputEditTextName.text.toString(),
+                    birthString,
+                    gender,
+                    textInputEditTextContact.text.toString(),
+                    textInputEditTextAddress.text.toString(),
+                    1,
+                    textInputEditTextNIN.text.toString(),
+                    textInputEditTextContactEE.text.toString(),
+                    "null",
+                    idScout,
+                    1,
+                    idLocal
+                )
 
-                    Toast.makeText(this, "Perfil editado com sucesso!", Toast.LENGTH_SHORT).show()
-                    finish()
+
+                GlobalScope.launch(Dispatchers.IO) {
+                    ProfileRequest.editScoutUser(newUser)
+                }
+
+                Toast.makeText(this, "Perfil editado com sucesso!", Toast.LENGTH_SHORT).show()
+                finish()
 
             }
         }

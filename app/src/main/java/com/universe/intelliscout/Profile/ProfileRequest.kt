@@ -112,7 +112,7 @@ object ProfileRequest {
         val requestBody = scoutUser.toJson().toString()
             .toRequestBody("application/json".toMediaTypeOrNull())
 
-        println("addScoutUser, scoutUSer = ${scoutUser.toJson().toString()}")
+        println("addScoutUser, scoutUSer = ${scoutUser.toJson()}")
 
         val request = Request.Builder()
             .url(url)
@@ -126,10 +126,8 @@ object ProfileRequest {
     fun editScoutUser(scoutUser: ScoutUser) {
 
 
-        val requestBody = RequestBody.create(
-                "application/json".toMediaTypeOrNull(),
-                scoutUser.toJson().toString()
-        )
+        val requestBody = scoutUser.toJson().toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
         println(scoutUser.toJson().toString())
 
         val request = Request.Builder()
