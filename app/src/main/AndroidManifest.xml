@@ -7,18 +7,23 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:hardwareAccelerated="false"
-        android:largeHeap="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IntelliScout"
         android:usesCleartextTraffic="true">
-      
-        <activity android:name=".Activities.GetAllActivities"/>
-        <activity android:name=".Equipment.EditEquipmentActivity"/>
+        <activity android:name=".InstructionCatalog.ListEditInstructionActivity"></activity>
+        <activity android:name=".InstructionCatalog.ListInstruction" />
+        <activity android:name=".InstructionCatalog.InstructionActivity" />
+        <activity android:name=".InstructionCatalog.EditInstructionActivity" />
+        <activity android:name=".InstructionCatalog.NewInstructionActivity" />
         <activity android:name=".Equipment.ListEquipmentActivity" />
+        <activity android:name=".Equipment.EditEquipmentActivity" />
+        <activity android:name=".Equipment.ListEditEquipmentActivity" />
+        <activity android:name=".Activities.GetAllActivities" />
         <activity android:name=".Equipment.AddEquipmentActivity" />
         <activity android:name=".Profile.ProfileGetAllActivity" />
         <activity android:name=".Profile.ProfileActivity" />

@@ -10,9 +10,13 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.universe.intelliscout.Authentic.LoginRequest
 import com.universe.intelliscout.Equipment.AddEquipmentActivity
+import com.universe.intelliscout.Equipment.ListEditEquipmentActivity
 import com.universe.intelliscout.Equipment.ListEquipmentActivity
 import com.universe.intelliscout.Models.Login
 import com.universe.intelliscout.Activities.GetAllActivities
+import com.universe.intelliscout.InstructionCatalog.ListEditInstructionActivity
+import com.universe.intelliscout.InstructionCatalog.ListInstruction
+import com.universe.intelliscout.InstructionCatalog.NewInstructionActivity
 import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileActivity
 import com.universe.intelliscout.Profile.ProfileGetAllActivity
@@ -28,7 +32,6 @@ class HomeActivity : AppCompatActivity() {
     lateinit var user: ScoutUser
 
     lateinit var loginUser: Login
-    lateinit var newUser: ScoutUser
     private var idScout: Int? = null
 
     private var gmail: String? = null
@@ -52,7 +55,6 @@ class HomeActivity : AppCompatActivity() {
             idScout = it.getInt("idScout")
             gmail = it.getString("gmail")
         }
-
 
         GlobalScope.launch(Dispatchers.IO) {
 
@@ -148,26 +150,22 @@ class HomeActivity : AppCompatActivity() {
 
                         R.id.nav_manual -> {
 
-                            /*
-                    val intent = Intent(this, ListReadInstructionsActivity::class.java)
-                    startActivity(intent)
-
-                     */
+                            val intent = Intent(this@HomeActivity, ListInstruction::class.java)
+                            startActivity(intent)
 
                         }
 
                         R.id.nav_edit_instructions -> {
 
-
+                            val intent = Intent(this@HomeActivity, ListEditInstructionActivity::class.java)
+                            startActivity(intent)
                         }
 
                         R.id.nav_add_instructions -> {
 
-                            /*
-                    val intent = Intent(this, AddInstructionActivity::class.java)
-                    startActivity(intent)
+                            val intent = Intent(this@HomeActivity, NewInstructionActivity::class.java)
+                            startActivity(intent)
 
-                     */
 
                         }
 
@@ -183,8 +181,7 @@ class HomeActivity : AppCompatActivity() {
                         R.id.nav_edit_equipment -> {
 
 
-                            val intent =
-                                Intent(this@HomeActivity, ListEquipmentActivity::class.java)
+                            val intent = Intent(this@HomeActivity, ListEditEquipmentActivity::class.java)
                             startActivity(intent)
 
 
@@ -192,12 +189,8 @@ class HomeActivity : AppCompatActivity() {
 
                         R.id.nav_manage_equipment -> {
 
-                            /*
-                    val intent = Intent(this, EditProfileActivity::class.java)
-                    startActivity(intent)
-                     */
-
-
+                            val intent = Intent(this@HomeActivity, ListEquipmentActivity::class.java)
+                            startActivity(intent)
                         }
                     }
                     true

@@ -31,6 +31,7 @@ class AddEquipmentActivity : AppCompatActivity() {
         editTextQuantityEquipment.text = count.toString()
 
         buttonPlus.setOnClickListener {
+            count = editTextQuantityEquipment.text.toString().toInt()
             // increment counter
             count++
             // writes counter position
@@ -39,6 +40,7 @@ class AddEquipmentActivity : AppCompatActivity() {
 
 
         buttonSubtract.setOnClickListener {
+            count = editTextQuantityEquipment.text.toString().toInt()
             // decrement counter
             if (count > 0)
                 count--
