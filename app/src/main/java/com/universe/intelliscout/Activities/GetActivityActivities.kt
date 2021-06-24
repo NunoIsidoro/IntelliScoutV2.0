@@ -13,8 +13,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class GetAllActivities : AppCompatActivity() {
-
+class GetActivityActivities : AppCompatActivity() {
+/*
     var activities: MutableList<Activity> = ArrayList()
     lateinit var activitiesAdapter: ActivitiesAdapter
 
@@ -90,5 +90,7 @@ class GetAllActivities : AppCompatActivity() {
         intent.putExtra("dtStart", dtStart)
         startActivity(intent)
     }
+
+ */
 }
 

@@ -14,8 +14,6 @@ import com.universe.intelliscout.Equipment.ListEditEquipmentActivity
 import com.universe.intelliscout.Equipment.ListEquipmentActivity
 import com.universe.intelliscout.Models.Login
 import com.universe.intelliscout.Activities.GetAllActivities
-import com.universe.intelliscout.Equipment.AddEquipmentActivity
-import com.universe.intelliscout.Equipment.ListEquipmentActivity
 import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileActivity
 import com.universe.intelliscout.Profile.ProfileGetAllActivity
@@ -54,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
             idScout = it.getInt("idScout")
             gmail = it.getString("gmail")
         }
-
+        println("----------------_________________________________------------------")
 
         GlobalScope.launch(Dispatchers.IO) {
 
