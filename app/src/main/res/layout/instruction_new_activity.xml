@@ -61,6 +61,7 @@
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="5dp"
                 android:textSize="18dp">
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -101,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:textSize="16dp"
-                android:text="Descreva a instrução..">
+                android:hint="Descreva a instrução..">
             </com.google.android.material.textfield.TextInputEditText>
 
         </com.google.android.material.textfield.TextInputLayout>

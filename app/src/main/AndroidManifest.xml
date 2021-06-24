@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IntelliScout"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InstructionCatalog.ListInstruction"></activity>
+        <activity android:name=".InstructionCatalog.ListEditInstructionActivity"></activity>
+        <activity android:name=".InstructionCatalog.ListInstruction" />
         <activity android:name=".InstructionCatalog.InstructionActivity" />
         <activity android:name=".InstructionCatalog.EditInstructionActivity" />
         <activity android:name=".InstructionCatalog.NewInstructionActivity" />

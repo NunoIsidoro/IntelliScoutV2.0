@@ -72,6 +72,7 @@ object InstructionCatalogRequest {
 
         OkHttpClient().newCall(request).execute().use {}
 
+
     }
 
     fun editInstCatalog(instCatalog: InstructionCatalog) {
@@ -80,7 +81,7 @@ object InstructionCatalogRequest {
             .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
-            .url(URL + "${instCatalog.id}")
+            .url(URL)
             .put(requestBody)
             .build()
 

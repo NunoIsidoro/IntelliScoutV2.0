@@ -101,7 +101,7 @@
             app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditTextInstructionDescription"
+                android:id="@+id/textInputEditTextDescription"
                 android:background="@drawable/text_input_edit_text_style"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"

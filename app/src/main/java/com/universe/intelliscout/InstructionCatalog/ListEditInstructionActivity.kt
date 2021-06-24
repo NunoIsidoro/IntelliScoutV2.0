@@ -5,31 +5,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import com.google.android.material.textfield.TextInputEditText
-import com.universe.intelliscout.Equipment.EditEquipmentActivity
-import com.universe.intelliscout.Equipment.EquipmentRequest
-import com.universe.intelliscout.Equipment.ListEquipmentActivity
-import com.universe.intelliscout.Models.Equipment
+import android.widget.BaseAdapter
+import android.widget.ListView
+import android.widget.TextView
 import com.universe.intelliscout.Models.InstructionCatalog
 import com.universe.intelliscout.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class ListInstruction : AppCompatActivity() {
+class ListEditInstructionActivity : AppCompatActivity() {
 
     var instructions: MutableList<InstructionCatalog> = ArrayList()
-    var instructionAdapter: InstructionAdapter? = null
+    var instructionAdapter: EditInstructionAdapter? = null
+    lateinit var listViewInstructions : ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.instruction_list_activity)
+        setContentView(R.layout.instruction_list_edit_activity)
 
-        val ListViewInstructions: ListView = findViewById(R.id.ListViewInstructions)
+        listViewInstructions = findViewById(R.id.ListViewInstructions)
 
-        instructionAdapter = InstructionAdapter()
-        ListViewInstructions.adapter = instructionAdapter
+        instructionAdapter = EditInstructionAdapter()
+        listViewInstructions.adapter = instructionAdapter
 
         GlobalScope.launch(Dispatchers.IO) {
 
@@ -44,17 +42,18 @@ class ListInstruction : AppCompatActivity() {
 
             }
         }
-
     }
 
-    inner class InstructionAdapter : BaseAdapter() {
+    inner class EditInstructionAdapter : BaseAdapter() {
         override fun getCount(): Int {
 
+            //tamanho do array equipamneto
             return instructions.size
         }
 
         override fun getItem(position: Int): Any {
 
+            //posicao do array equipamneto
             return instructions[position]
         }
 
@@ -65,36 +64,42 @@ class ListInstruction : AppCompatActivity() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val rowView = layoutInflater.inflate(R.layout.instruction_row, parent, false)
 
+            //declaração das textViews e botões
             val textViewTitle = rowView.findViewById<TextView>(R.id.textViewTitle)
             val textViewDescription = rowView.findViewById<TextView>(R.id.textViewDescription)
 
+            //enviar os dados da classe equipamento para as textViews
             textViewTitle.text = instructions[position].name
             textViewDescription.text = instructions[position].description
 
             rowView.setOnClickListener{
 
-                val intent = Intent(this@ListInstruction, InstructionActivity::class.java)
+                val intent = Intent(this@ListEditInstructionActivity, EditInstructionActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.putExtra("id", instructions[position].id)
                 intent.putExtra("name", instructions[position].name)
                 intent.putExtra("description", instructions[position].description)
                 startActivity(intent)
 
-                GlobalScope.launch(Dispatchers.IO) {
-
-                    InstructionCatalogRequest.getAllInstCatalog {
-
-                        instructions.addAll(it)
-
-                    }
-                }
-
-                instructionAdapter?.notifyDataSetChanged()
 
             }
+
+            GlobalScope.launch(Dispatchers.IO) {
+
+                InstructionCatalogRequest.getAllInstCatalog {
+
+                    instructions.clear()
+                    instructions.addAll(it)
+
+                }
+            }
+
+
+            instructionAdapter?.notifyDataSetChanged()
 
 
 
             return rowView
         }
     }
-
 }
