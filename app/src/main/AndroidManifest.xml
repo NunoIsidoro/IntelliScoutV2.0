@@ -14,6 +14,8 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.IntelliScout">
 
+
+        <activity android:name=".Activities.GetAllActivities"></activity>
         <activity android:name=".Profile.ProfileGetAllActivity"></activity>
         <activity android:name=".Profile.ProfileActivity"></activity>
         <activity android:name=".Profile.EditProfileActivity" />

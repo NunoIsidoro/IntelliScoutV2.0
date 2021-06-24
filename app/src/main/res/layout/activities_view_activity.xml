@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="20dp"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp"
-    android:layout_marginBottom="20dp"
+    android:layout_width="match_parent"
     android:scrollbars="none"
-    android:background="@drawable/layout_style"
-    tools:context=".MainActivity">
+    android:background="@drawable/scouts_activities_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/layout_style">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
+        android:layout_height="match_parent">
+
 
         <TextView
             android:id="@+id/textViewActivityName"
@@ -26,6 +29,7 @@
             android:layout_height="wrap_content"
             android:text="Nome da Atividade:"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +47,9 @@
             app:startIconDrawable="@drawable/activity_name_icon"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="Nome">
+            android:hint="Nome"
+            android:textColorHint="@color/black"
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextActivityName"
@@ -67,6 +73,8 @@
             android:layout_height="wrap_content"
             android:text="Descrição da atividade:"
             android:textStyle="bold"
+
+            android:textColor="@color/white"
             android:layout_marginTop="8dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +92,10 @@
             app:startIconDrawable="@drawable/activity_description_icon"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="Descrição">
+            android:hint="Descrição"
+
+            android:textColorHint="@color/black"
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextNIN"
@@ -100,12 +111,16 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
         <TextView
             android:id="@+id/textViewActivityHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hora de início:"
             android:textStyle="bold"
+
+            android:textColor="@color/white"
             android:layout_marginTop="8dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +138,9 @@
             app:startIconDrawable="@drawable/hour_icon"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="Hora">
+            android:hint="Hora"
+            android:textColorHint="@color/black"
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextBirth"
@@ -139,12 +156,16 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
         <TextView
             android:id="@+id/textViewActivityDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Data da início:"
             android:textStyle="bold"
+
+            android:textColor="@color/white"
             android:layout_marginTop="8dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +183,9 @@
             app:startIconDrawable="@drawable/date_icon"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="Data">
+            android:hint="Data"
+            android:textColorHint="@color/black"
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextActivityDate"
@@ -178,12 +201,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
         <TextView
             android:id="@+id/textViewActivityLocal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Local:"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:layout_marginTop="8dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -201,7 +227,9 @@
             app:startIconDrawable="@drawable/location_icon"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="Local">
+            android:hint="Local"
+            android:textColorHint="@color/black"
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextActivityLocal"
@@ -217,12 +245,16 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
         <TextView
             android:id="@+id/textViewActivitySection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Secçôes:"
             android:textStyle="bold"
+
+            android:textColor="@color/white"
             android:layout_marginTop="8dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -240,7 +272,9 @@
             app:startIconDrawable="@drawable/section_icon"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="Secções">
+            android:hint="Secções"
+            android:textColorHint="@color/black"
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextActivitySection"
@@ -256,12 +290,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
         <TextView
             android:id="@+id/textViewActivityTeam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Equipas:"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:layout_marginTop="8dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -279,7 +316,9 @@
             app:startIconDrawable="@drawable/team_icon"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="Equipas">
+            android:hint="Equipas"
+            android:textColorHint="@color/black"
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextActivityTeam"
@@ -295,12 +334,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
         <TextView
             android:id="@+id/textViewActivityEquipment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Equipamentos:"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:layout_marginTop="8dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -318,7 +360,9 @@
             app:startIconDrawable="@drawable/upload_icon"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="Equipamentos">
+            android:hint="Equipamentos"
+            android:textColorHint="@color/black"
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextActivityEquipment"
@@ -335,7 +379,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutActivityEquipment"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
 
+</androidx.constraintlayout.widget.ConstraintLayout>

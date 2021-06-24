@@ -1,7 +1,5 @@
 package com.universe.intelliscout.Activities
 
-import android.content.Intent
-import android.media.audiofx.AudioEffect
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -9,27 +7,22 @@ import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.universe.intelliscout.Authentic.LoginRequest
 import com.universe.intelliscout.Models.Activity
-import com.universe.intelliscout.Profile.ProfileGetAllActivity
-import com.universe.intelliscout.Profile.ProfileRequest
 import com.universe.intelliscout.R
-import ipca.example.projetosemestre.Models.ScoutUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class GetActivity : AppCompatActivity() {
+class GetAllActivities : AppCompatActivity() {
 
-
-    var activities : MutableList<Activity> = ArrayList()
-    lateinit var activitiesAdapter : ActivitiesAdapter
+    var activities: MutableList<Activity> = ArrayList()
+    lateinit var activitiesAdapter: ActivitiesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.profile_list_activity)
+        setContentView(R.layout.activities_list_activity)
 
-        val listView = findViewById<ListView>(R.id.listViewProfile)
+        val listView = findViewById<ListView>(R.id.listViewActivities)
 
         activitiesAdapter = ActivitiesAdapter()
         listView.adapter = activitiesAdapter
@@ -45,7 +38,7 @@ class GetActivity : AppCompatActivity() {
         }
     }
 
-    inner class ActivitiesAdapter: BaseAdapter() {
+    inner class ActivitiesAdapter : BaseAdapter() {
         override fun getCount(): Int {
 
             //tamanho do array equipamneto
@@ -63,42 +56,39 @@ class GetActivity : AppCompatActivity() {
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val rowView = layoutInflater.inflate(R.layout.profile_row, parent, false)
+            val rowView = layoutInflater.inflate(R.layout.activities_row, parent, false)
 
             //declaração das textViews e botões
-            val textViewProfileName  = rowView.findViewById<TextView>(R.id.textViewName)
-            val textViewProfileEmail = rowView.findViewById<TextView>(R.id.textViewEmail)
-            val idLoguin : Int = activities[position].id!!
+            val textViewActivitieName = rowView.findViewById<TextView>(R.id.textViewActivityName)
+            val textViewActivitieLocal = rowView.findViewById<TextView>(R.id.textViewActivityLocal)
+            val textViewActivitieDate = rowView.findViewById<TextView>(R.id.textViewActivityDate)
 
-            GlobalScope.launch(Dispatchers.IO) {
-                var login = LoginRequest.getLoginById(idLoguin)
+            //enviar os dados da classe atividades para as textViews
+            textViewActivitieName.text = activities[position].name
+            textViewActivitieLocal.text = activities[position].idLocal.toString()
+            textViewActivitieDate.text = activities[position].dtStart
 
-                GlobalScope.launch(Dispatchers.Main) {
-                    //enviar os dados da classe equipamento para as textViews
-                    textViewProfileName.text = activities[position].name
-                    textViewProfileEmail.text = login.gmail
-
-                }
-
-            }
-
+            /*
             // ao ser pressionado o botão irá ser aberta uma página para editar os equipamentos
             rowView.setOnClickListener {
-                openEditScoutUser(activities[position].id!!)
+                openEditActivities(activities[position].id!!)
                 finish()
-            }
+            }*/
 
 
             return rowView
         }
 
     }
-
+/*
     // function used to open the editEquipmentActivity
-    private fun openEditScoutUser(id: Int) {
-        val intent = Intent(this, ProfileGetAllActivity :: class.java)
+    private fun openEditActivities(id: Int, name: String, idLocal: Int, dtStart: String) {
+        val intent = Intent(this, EditActivities :: class.java)
         intent.putExtra("id", id)
+        intent.putExtra("name", name)
+        intent.putExtra("idlocal", idLocal)
+        intent.putExtra("dtStart", dtStart)
         startActivity(intent)
-    }
+    }*/
 }
 

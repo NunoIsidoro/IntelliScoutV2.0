@@ -10,12 +10,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.universe.intelliscout.Authentic.LoginActivity
 import com.universe.intelliscout.R
 
-class OnBoardingFragment3 : Fragment(){
+class OnBoardingFragment3 : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root : ViewGroup = inflater.inflate(R.layout.fragment_on_boarding3, container, false) as ViewGroup
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val root: ViewGroup =
+            inflater.inflate(R.layout.fragment_on_boarding3, container, false) as ViewGroup
 
-        val fabNext : FloatingActionButton = root.findViewById(R.id.fabNext)
+        val fabNext: FloatingActionButton = root.findViewById(R.id.fabNext)
 
         fabNext.setOnClickListener {
 
