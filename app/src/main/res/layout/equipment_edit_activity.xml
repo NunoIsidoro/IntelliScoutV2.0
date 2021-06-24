@@ -1,42 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/scouts_2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Equipment.EditEquipmentActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintRowEquipment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/row_style"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <TextView
             android:id="@+id/textViewName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="25dp"
+            android:paddingLeft="20dp"
             android:text="Nome"
+            android:textColor="@color/white"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="25dp"
             android:background="@drawable/edit_text_style"
+            android:backgroundTint="#60808080"
             android:hint="Nome Do Equipamento"
+            android:textColor="@color/white"
             android:inputType="textPersonName"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.157"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
@@ -44,10 +60,13 @@
             android:id="@+id/textViewDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="25dp"
+            android:paddingLeft="20dp"
             android:text="Descrição"
+            android:textColor="@color/white"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.842"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,82 +75,97 @@
         <EditText
             android:id="@+id/editTextDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="25dp"
             android:background="@drawable/edit_text_style"
+            android:backgroundTint="#60808080"
             android:hint="Descreva o equipamento.."
+            android:textColor="@color/white"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
-
 
 
         <TextView
             android:id="@+id/textViewQuantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="130dp"
+            android:layout_marginRight="130dp"
+            android:paddingLeft="10dp"
             android:text="Quantidade"
+            android:textColor="@color/white"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextDescription" />
 
 
         <Button
-            android:id="@+id/buttonSubtract"
+            android:id="@+id/buttonPlus"
             android:layout_width="50dp"
             android:layout_height="52dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/blue"
-            android:text="-"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/button_style"
+            android:text="+"
             android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintRight_toLeftOf="@+id/buttonPlus"
+            android:textSize="15dp"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextQuantityEquipment"
+            app:layout_constraintTop_toBottomOf="@+id/textViewQuantity" />
+
+        <EditText
+            android:id="@+id/editTextQuantityEquipment"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/edit_text_style"
+            android:backgroundTint="#60808080"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:inputType="number"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewQuantity" />
 
         <Button
-            android:id="@+id/buttonPlus"
+            android:id="@+id/buttonSubtract"
             android:layout_width="50dp"
             android:layout_height="52dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="+"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="31dp"
+            android:layout_marginRight="31dp"
+            android:background="@drawable/button_style"
+            android:text="-"
             android:textColor="@color/white"
-            android:textSize="15dp"
-            app:layout_constraintLeft_toRightOf="@id/editTextQuantityEquipment"
-            app:layout_constraintTop_toBottomOf="@+id/textViewQuantity" />
-
-
-        <EditText
-            android:id="@+id/editTextQuantityEquipment"
-            android:layout_width="40dp"
-            android:layout_height="42dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="20dp"
-            android:textAlignment="center"
-            android:background="@drawable/edit_text_style"
-            android:gravity="center"
-            android:inputType="number"
-            app:layout_constraintHorizontal_bias="0.734"
-            app:layout_constraintLeft_toRightOf="@+id/buttonPlus"
-            app:layout_constraintRight_toLeftOf="@id/buttonSubtract"
+            android:textSize="20dp"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toStartOf="@+id/editTextQuantityEquipment"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewQuantity" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="200dp"
+            android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -141,20 +175,24 @@
                 android:id="@+id/buttonDelete"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_default_style"
                 android:backgroundTint="@color/red"
                 android:text="Apagar"
-                android:layout_marginRight="10dp"/>
+                app:backgroundTint="@null" />
 
             <Button
                 android:id="@+id/buttonSave"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_default_style"
                 android:backgroundTint="@color/green"
                 android:text="Guardar"
-                android:layout_marginLeft="10dp"/>
+                app:backgroundTint="@null" />
 
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
