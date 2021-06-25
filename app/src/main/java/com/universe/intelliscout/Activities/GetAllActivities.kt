@@ -71,10 +71,17 @@ class GetAllActivities : AppCompatActivity() {
 
 
             // ao ser pressionado o botão irá ser aberta uma página para editar os equipamentos
+<<<<<<< Updated upstream
            // rowView.setOnClickListener {
             //    openEditActivities(activities[position].id!!)
             //    finish()
             //}
+=======
+            //rowView.setOnClickListener {
+            //    openEditActivities(activities[position].id!!)
+            //    finish()
+           // }
+>>>>>>> Stashed changes
 
 
             return rowView
