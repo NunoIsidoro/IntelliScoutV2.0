@@ -1,5 +1,6 @@
 package com.universe.intelliscout.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -82,12 +83,12 @@ class GetAllActivities : AppCompatActivity() {
     }
 
     // function used to open the editEquipmentActivity
-    private fun openEditActivities(id: Int, name: String, idLocal: Int, dtStart: String) {
+    private fun openEditActivities(id: Int) {
         val intent = Intent(this, EditActivities :: class.java)
         intent.putExtra("id", id)
-        intent.putExtra("name", name)
-        intent.putExtra("idlocal", idLocal)
-        intent.putExtra("dtStart", dtStart)
+        // intent.putExtra("name", name)
+        // intent.putExtra("idlocal", idLocal)
+        // intent.putExtra("dtStart", dtStart)
         startActivity(intent)
     }
 }

@@ -28,7 +28,7 @@ class GetActivityActivities : AppCompatActivity() {
         listView.adapter = activitiesAdapter
 
         GlobalScope.launch(Dispatchers.IO) {
-            ActivitiesRequest.getAllActivities {
+            ActivitiesRequest.getActivity() {
                 activities.addAll(it)
             }
             GlobalScope.launch(Dispatchers.Main) {

@@ -17,9 +17,7 @@ class Activity {
         id: Int?,
         name: String?,
         dtStart: String?,
-        dtEnd: String?,
         hourStart: String?,
-        hourEnd: String?,
         idActivityLocal: Int?,
         idActivityType: Int?
     ) {
@@ -28,7 +26,7 @@ class Activity {
         this.name = name
         this.dtStart = dtStart
         this.hourStart = hourStart
-        this.idLocal = idLocal
+        this.idLocal = idActivityLocal
         this.idActivityType = idActivityType
 
     }

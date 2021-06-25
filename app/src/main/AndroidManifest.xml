@@ -19,6 +19,8 @@
         <activity android:name=".Equipment.ListEquipmentActivity"></activity>
         <activity android:name=".Equipment.EditEquipmentActivity" />
         <activity android:name=".Equipment.ListEditEquipmentActivity" />
+        <activity android:name=".Activities.GetActivityActivities"/>
+        <activity android:name=".Activities.EditActivities"/>
         <activity android:name=".Activities.GetAllActivities"/>
         <activity android:name=".Equipment.AddEquipmentActivity" />
         <activity android:name=".Profile.ProfileGetAllActivity" />

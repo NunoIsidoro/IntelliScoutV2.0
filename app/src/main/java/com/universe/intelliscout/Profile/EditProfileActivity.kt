@@ -43,7 +43,7 @@ class EditProfileActivity : AppCompatActivity() {
         val textInputEditTextContactEE = findViewById<TextInputEditText>(R.id.textInputEditTextContactEE)
         val textInputEditTextAddress = findViewById<TextInputEditText>(R.id.textInputEditTextAddress)
         val textInputEditTextDistrict = findViewById<TextInputEditText>(R.id.textInputEditTextDistrict)
-            
+
         val datePicker: DatePicker = findViewById(R.id.datePicker)
         val radioButtonMasculine: RadioButton = findViewById(R.id.radioButtonMasculine)
         val radioButtonFeminine: RadioButton = findViewById(R.id.radioButtonFeminine)
@@ -53,10 +53,8 @@ class EditProfileActivity : AppCompatActivity() {
         val bundle = intent.extras
 
         bundle?.let {
-
-            idScout = it.getInt("idScout")
+            idScout = it.getInt("id")
             gmail = it.getString("gmail")
-
         }
 
         GlobalScope.launch(Dispatchers.IO) {
