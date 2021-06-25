@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class GetAllActivities : AppCompatActivity() {
+class ListEditActivites : AppCompatActivity() {
 
     var activities: MutableList<Activity> = ArrayList()
     lateinit var activitiesAdapter: ActivitiesAdapter
@@ -70,6 +70,19 @@ class GetAllActivities : AppCompatActivity() {
             textViewActivitieName.text = activities[position].name
             textViewActivitieLocal.text = activities[position].idLocal.toString()
             textViewActivitieDate.text = UtilFunctions().receiveBirthFromDatabaseToString(activities[position].dtStart.toString())
+
+
+            // ao ser pressionado o botão irá ser aberta uma página para editar os equipamentos
+            rowView.setOnClickListener {
+                val intent = Intent(this@ListEditActivites, EditActivities::class.java)
+                intent.putExtra("id", activities[position].id)
+                intent.putExtra("name", activities[position].name)
+                intent.putExtra("idLocal", activities[position].idLocal)
+                intent.putExtra("dt_start", activities[position].dtStart)
+                intent.putExtra("id_type", activities[position].idActivityType)
+                startActivity(intent)
+            }
+
 
             return rowView
         }

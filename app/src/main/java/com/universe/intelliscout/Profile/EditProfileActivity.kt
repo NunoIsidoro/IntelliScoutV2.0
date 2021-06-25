@@ -138,7 +138,7 @@ class EditProfileActivity : AppCompatActivity() {
                 textInputEditTextDistrict.setOnClickListener {
 
                     MaterialAlertDialogBuilder(this@EditProfileActivity)
-                        .setTitle(resources.getString(R.string.title))
+                        .setTitle(resources.getString(R.string.district))
                         .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
                             // Respond to neutral button press
                         }

@@ -28,7 +28,9 @@
     <string name="close">Close</string>
     <string name="open">Open</string>
     <string name="cancel">Cancelar</string>
-    <string name="title">Distrito</string>
+    <string name="district">Distrito</string>
+    <string name="section">Secção</string>
+    <string name="type">Tipo de Atividade</string>
     <string name="ok">Confirmar</string>
 
 </resources>

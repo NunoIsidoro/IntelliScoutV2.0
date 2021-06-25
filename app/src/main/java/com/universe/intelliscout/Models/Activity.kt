@@ -37,8 +37,8 @@ class Activity {
         jsonObject.put("name", name)
         jsonObject.put("dtStart", dtStart)
         jsonObject.put("hourStart", hourStart)
-        jsonObject.put("idLocal", idLocal)
-        jsonObject.put("idActivityType", idActivityType)
+        jsonObject.put("local", idLocal)
+        jsonObject.put("idType", idActivityType)
         return jsonObject
     }
 

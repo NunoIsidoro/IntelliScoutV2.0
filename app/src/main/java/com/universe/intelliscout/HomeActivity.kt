@@ -14,6 +14,7 @@ import com.universe.intelliscout.Equipment.ListEditEquipmentActivity
 import com.universe.intelliscout.Equipment.ListEquipmentActivity
 import com.universe.intelliscout.Models.Login
 import com.universe.intelliscout.Activities.GetAllActivities
+import com.universe.intelliscout.Activities.ListEditActivites
 import com.universe.intelliscout.Profile.EditProfileActivity
 import com.universe.intelliscout.Profile.ProfileActivity
 import com.universe.intelliscout.Profile.ProfileGetAllActivity
@@ -135,6 +136,9 @@ class HomeActivity : AppCompatActivity() {
                         }
 
                         R.id.nav_edit_activities -> {
+
+                            val intent = Intent(this@HomeActivity, ListEditActivites::class.java)
+                            startActivity(intent)
 
                         }
 

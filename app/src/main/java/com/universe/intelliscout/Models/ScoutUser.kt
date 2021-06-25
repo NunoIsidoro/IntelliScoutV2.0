@@ -65,7 +65,7 @@ class ScoutUser {
         jsonObject.put("phone_ee", phoneEE)
         jsonObject.put("url_img", urlImg)
         jsonObject.put("scout_login", idScoutLogin)
-        jsonObject.put("scout_team", idScoutTeam)
+        jsonObject.put("scout_section", idScoutTeam)
         jsonObject.put("id_local", idLocal)
 
         return jsonObject
@@ -87,7 +87,7 @@ class ScoutUser {
             scoutUser.phoneEE = jsonArticle.getString("phone_ee_scout_user")
             scoutUser.urlImg = jsonArticle.getString("url_img_scout_user")
             scoutUser.idScoutLogin = jsonArticle.getInt("id_scout_login")
-            scoutUser.idScoutTeam = jsonArticle.getInt("id_scout_team")
+            scoutUser.idScoutTeam = jsonArticle.getInt("id_scout_section")
             scoutUser.idLocal = jsonArticle.getInt("id_local")
 
             return scoutUser

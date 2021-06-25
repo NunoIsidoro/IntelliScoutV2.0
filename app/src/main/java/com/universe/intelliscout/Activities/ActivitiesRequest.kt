@@ -13,6 +13,8 @@ import org.json.JSONObject
 object ActivitiesRequest {
 
     const val url = "http://intelliscout.ml:60000/activity/"
+    const val urltype = "http://intelliscout.ml:60000/activityType/byname/"
+    const val urlAllTypes = "http://intelliscout.ml:60000/activityType/"
 
     /*
         This function return a List of activities
@@ -58,6 +60,49 @@ object ActivitiesRequest {
         }
     }
 
+    fun getType(id: Int): String {
+
+        var result: String? = null
+        val request = Request.Builder().url(urltype + "$id").build()
+
+        OkHttpClient().newCall(request).execute().use { response ->
+
+            val jsonArrayStr: String = response.body!!.string()
+            val jsonArray = JSONArray(jsonArrayStr)
+
+            for (index in 0 until jsonArray.length()) {
+                val jsonArticle = jsonArray.get(index) as JSONObject
+                result = jsonArticle.getString("name_activity_type")
+                println(result)
+            }
+
+            return result!!
+        }
+    }
+
+    fun getAllTypes(callBack: (List<String>) -> Unit) {
+
+        val types: MutableList<String> = arrayListOf()
+
+        val request = Request.Builder().url(urlAllTypes).get().build()
+
+
+        OkHttpClient().newCall(request).execute().use { response ->
+
+            val activityJsonArrayStr: String = response.body!!.string()
+            val activityJsonArray = JSONArray(activityJsonArrayStr)
+
+            for (index in 0 until activityJsonArray.length()) {
+                val jsonArticle = activityJsonArray.get(index) as JSONObject
+                val type = jsonArticle.getString("name_activity_type")
+                println(type)
+                types.add(type)
+            }
+
+            callBack(types)
+        }
+    }
+
 
     fun addActivity(activity: Activity) {
 
@@ -79,9 +124,11 @@ object ActivitiesRequest {
             .toRequestBody("application/json".toMediaTypeOrNull())
 
         val request = Request.Builder()
-            .url(url + "{activity.id}")
+            .url(url + "${activity.id}")
             .put(requestBody)
             .build()
+
+        println(activity.toJson())
 
         OkHttpClient().newCall(request).execute().use {}
 
