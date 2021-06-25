@@ -52,10 +52,6 @@ class ProfileActivity : AppCompatActivity() {
 
             val user = ProfileRequest.getScoutUser(idScout!!)
 
-            GlobalScope.launch(Dispatchers.Main) {
-
-            }
-
             val local = ProfileRequest.getLocal(user.idLocal!!)
 
             val team = ProfileRequest.getTeam(user.idScoutTeam!!)
