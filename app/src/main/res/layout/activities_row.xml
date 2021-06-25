@@ -5,104 +5,128 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:scrollbars="none"
-    android:background="@drawable/layout_style">
+    android:scrollbars="none">
 
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Nome da atividade:"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:ellipsize="end"
-                android:maxLines="1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                android:id="@+id/textViewActivityName"
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:paddingTop="3dp"
-                android:paddingLeft="20dp"
-                android:background="@drawable/text_input_edit_text_style"
-                android:ellipsize="end"
-                android:maxLines="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView1" />
-
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Local: "
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:ellipsize="end"
-                android:maxLines="2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewActivityName" />
-
-            <TextView
-                android:id="@+id/textViewActivityLocal"
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="44dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="20dp"
-                android:paddingTop="3dp"
-                android:paddingLeft="20dp"
-                android:background="@drawable/text_input_edit_text_style"
-                android:ellipsize="end"
-                android:maxLines="2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Data de inicio:"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:ellipsize="end"
-                android:maxLines="2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewActivityLocal" />
-
-    <TextView
-        android:id="@+id/textViewActivityDate"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/text_input_edit_text_style"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:paddingLeft="20dp"
-        android:paddingTop="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/layout_style"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/imageViewCalendar"
+            android:layout_width="90dp"
+            android:layout_height="95dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/calendar_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Nome da atividade:"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"/>
+
+        <TextView
+            android:id="@+id/textViewActivityName"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="3dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/text_input_edit_text_style"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Local: "
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"
+            app:layout_constraintTop_toBottomOf="@+id/textViewActivityName" />
+
+        <TextView
+            android:id="@+id/textViewActivityLocal"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="3dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/text_input_edit_text_style"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Data de inicio:"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"
+            app:layout_constraintTop_toBottomOf="@+id/textViewActivityLocal" />
+
+        <TextView
+            android:id="@+id/textViewActivityDate"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/text_input_edit_text_style"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingLeft="20dp"
+            android:paddingTop="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

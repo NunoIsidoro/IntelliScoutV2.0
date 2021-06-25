@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.universe.intelliscout.Models.Activity
 import com.universe.intelliscout.R
+import com.universe.intelliscout.Utils.GlobalRequests
+import com.universe.intelliscout.Utils.UtilFunctions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -67,30 +69,10 @@ class GetAllActivities : AppCompatActivity() {
             //enviar os dados da classe atividades para as textViews
             textViewActivitieName.text = activities[position].name
             textViewActivitieLocal.text = activities[position].idLocal.toString()
-            textViewActivitieDate.text = activities[position].dtStart
-
-
-            // ao ser pressionado o botão irá ser aberta uma página para editar os equipamentos
-           // rowView.setOnClickListener {
-            //    openEditActivities(activities[position].id!!)
-            //    finish()
-            //}
-
-
+            textViewActivitieDate.text = UtilFunctions().receiveBirthFromDatabaseToString(activities[position].dtStart.toString())
 
             return rowView
         }
 
     }
-
-    // function used to open the editEquipmentActivity
-    private fun openEditActivities(id: Int, name: String, idLocal: Int, dtStart: String) {
-        val intent = Intent(this, EditActivities :: class.java)
-        intent.putExtra("id", id)
-        intent.putExtra("name", name)
-        intent.putExtra("idlocal", idLocal)
-        intent.putExtra("dtStart", dtStart)
-        startActivity(intent)
-    }
 }
-
