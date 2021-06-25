@@ -1,5 +1,6 @@
 package com.universe.intelliscout.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -70,10 +71,10 @@ class GetAllActivities : AppCompatActivity() {
 
 
             // ao ser pressionado o botão irá ser aberta uma página para editar os equipamentos
-            rowView.setOnClickListener {
-                openEditActivities(activities[position].id!!)
-                finish()
-            }
+           // rowView.setOnClickListener {
+            //    openEditActivities(activities[position].id!!)
+            //    finish()
+            //}
 
 
             return rowView
